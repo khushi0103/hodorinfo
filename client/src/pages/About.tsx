@@ -83,13 +83,13 @@ function ParticleCanvas() {
         const b = 255;
 
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${0.45 + p.energy * 0.5})`;
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${0.25 + p.energy * 0.4})`;
         ctx.fill();
 
         if (dist < 150) {
           ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.2 * (1 - dist / 150) + p.energy * 0.4})`;
-          ctx.lineWidth = 1 + p.energy * 1.5;
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.12 * (1 - dist / 150) + p.energy * 0.3})`;
+          ctx.lineWidth = 0.7 + p.energy * 1;
           ctx.stroke();
         }
       });
@@ -103,8 +103,8 @@ function ParticleCanvas() {
             const g = Math.floor(103 + 45 * avgEnergy);
             const b = 255;
             ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y);
-            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.12 * (1 - d / 130) + avgEnergy * 0.3})`;
-            ctx.lineWidth = 0.6 + avgEnergy * 1.5;
+            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.08 * (1 - d / 130) + avgEnergy * 0.2})`;
+            ctx.lineWidth = 0.5 + avgEnergy * 1;
             ctx.stroke();
           }
         }
