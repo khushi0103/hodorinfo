@@ -17,7 +17,7 @@ export default function Footer() {
               <div className="w-12 h-12 bg-gradient-to-br from-[#06b6d4] via-[#3b82f6] to-[#d946ef] rounded-xl flex items-center justify-center shadow-xl shadow-cyan-500/30 transform group-hover:scale-110 transition-transform duration-500">
                 <span className="text-white font-bold text-2xl font-display">H</span>
               </div>
-              <span className="text-white font-bold text-3xl tracking-tighter uppercase font-display bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">HodorInfo</span>
+              <span className="text-white font-extrabold text-3xl tracking-[0.01em] uppercase font-display">HodorInfo</span>
             </div>
           </div>
 
@@ -85,13 +85,13 @@ export default function Footer() {
 
           {/* BOTTOM COPYRIGHT - COMPACT */}
           <div className="flex flex-col items-center justify-center space-y-2 pt-6">
-            <p 
-              className="uppercase tracking-[0.3em] text-center" 
+            <p
+              className="uppercase tracking-[0.3em] text-center"
               style={{ fontSize: '13px', lineHeight: '1.2', color: 'rgba(255, 255, 255, 0.6)' }}
             >
               © {currentYear} HodorInfo. All rights reserved.
             </p>
-            <p 
+            <p
               className="uppercase tracking-[0.15em] hidden md:block text-center"
               style={{ fontSize: '11px', marginTop: '4px', color: 'rgba(255, 255, 255, 0.4)' }}
             >

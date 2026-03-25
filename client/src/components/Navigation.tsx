@@ -148,9 +148,9 @@ export default function Navigation() {
             style={{ height: '84px' }}
           >
             {/* ── Logo ─────────────────────────────────────────────────── */}
-            <Link href="/" className="flex items-center group" style={{ gap: '10px', textDecoration: 'none' }}>
+            <Link href="/" className="flex items-center group" style={{ gap: '10px', textDecoration: 'none', cursor: 'default' }}>
               <div
-                className="flex items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110"
+                className="flex items-center justify-center rounded-xl transition-all duration-300"
                 style={{
                   width: '44px',
                   height: '44px',
@@ -175,11 +175,12 @@ export default function Navigation() {
               <span
                 style={{
                   fontWeight: 800,
-                  color: '#ffffff',
                   fontSize: '22px',
                   letterSpacing: '0.01em',
                   lineHeight: 1,
                   textTransform: 'uppercase',
+                  color: '#ffffff',
+                  display: 'inline-block',
                 }}
                 className="hidden sm:inline font-display"
               >
