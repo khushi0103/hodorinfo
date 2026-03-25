@@ -14,10 +14,26 @@ export default function Footer() {
           {/* Centered Logo Above Grid - Shorter Margin */}
           <div className="flex flex-col items-center justify-center mb-10 mt-2">
             <div className="flex items-center gap-4 group cursor-default">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#06b6d4] via-[#3b82f6] to-[#d946ef] rounded-xl flex items-center justify-center shadow-xl shadow-cyan-500/30 transform group-hover:scale-110 transition-transform duration-500">
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500"
+                style={{
+                  background: 'linear-gradient(135deg, #6367FF 0%, #8494FF 100%)',
+                  boxShadow: '0 0 24px rgba(99, 103, 255, 0.45)',
+                }}
+              >
                 <span className="text-white font-bold text-2xl font-display">H</span>
               </div>
-              <span className="text-white font-extrabold text-3xl tracking-[0.01em] uppercase font-display">HodorInfo</span>
+              <span
+                className="font-extrabold text-3xl tracking-[0.01em] uppercase font-display"
+                style={{
+                  background: 'linear-gradient(90deg, #6367FF 0%, #8494FF 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  display: 'inline-block',
+                }}
+              >
+                HodorInfo
+              </span>
             </div>
           </div>
 

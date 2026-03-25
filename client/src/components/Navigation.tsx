@@ -155,7 +155,7 @@ export default function Navigation() {
                   width: '44px',
                   height: '44px',
                   background: 'linear-gradient(135deg, #6367FF 0%, #8494FF 100%)',
-                  boxShadow: '0 0 20px rgba(6, 182, 212, 0.4)',
+                  boxShadow: '0 0 24px rgba(99, 103, 255, 0.45)',
                   flexShrink: 0,
                   transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}
@@ -348,7 +348,7 @@ export default function Navigation() {
                         right: '14px',
                         height: '2px',
                         borderRadius: '99px',
-                        background: 'linear-gradient(90deg, #00d4ff, #a78bfa)',
+                        background: 'linear-gradient(90deg, #6367FF, #8494FF)',
                         transform: showLine ? 'scaleX(1)' : 'scaleX(0)',
                         transformOrigin: 'left center',
                         opacity: showLine ? 1 : 0,
@@ -367,15 +367,15 @@ export default function Navigation() {
                 className="relative overflow-hidden flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-[#0a0e27] transition-all duration-300 hover:scale-105 group"
                 style={{
                   background: 'linear-gradient(135deg, #6367FF 0%, #8494FF 100%)',
-                  boxShadow: '0 0 20px rgba(0, 212, 255, 0.3)',
+                  boxShadow: '0 8px 24px rgba(99, 103, 255, 0.35)',
                 }}
                 onMouseEnter={(e: any) => {
                   (e.currentTarget as HTMLElement).style.boxShadow =
-                    '0 0 32px rgba(0, 212, 255, 0.55)';
+                    '0 12px 32px rgba(99, 103, 255, 0.55)';
                 }}
                 onMouseLeave={(e: any) => {
                   (e.currentTarget as HTMLElement).style.boxShadow =
-                    '0 0 20px rgba(0, 212, 255, 0.3)';
+                    '0 8px 24px rgba(99, 103, 255, 0.35)';
                 }}
               >
                 {/* Shimmer sweep */}
@@ -396,21 +396,21 @@ export default function Navigation() {
               onClick={() => setIsOpen((p) => !p)}
               className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-200"
               style={{
-                background: isOpen ? 'rgba(0, 212, 255, 0.1)' : 'transparent',
+                background: isOpen ? 'rgba(99, 103, 255, 0.1)' : 'transparent',
                 border: '1px solid',
-                borderColor: isOpen ? 'rgba(0, 212, 255, 0.3)' : 'rgba(45, 53, 97, 0.6)',
+                borderColor: isOpen ? 'rgba(99, 103, 255, 0.3)' : 'rgba(45, 53, 97, 0.6)',
               }}
               aria-label="Toggle menu"
             >
               <span
                 className="transition-all duration-300"
-                style={{ color: '#00d4ff', opacity: isOpen ? 0 : 1, position: 'absolute' }}
+                style={{ color: '#6367FF', opacity: isOpen ? 0 : 1, position: 'absolute' }}
               >
                 <Menu size={20} />
               </span>
               <span
                 className="transition-all duration-300"
-                style={{ color: '#00d4ff', opacity: isOpen ? 1 : 0, position: 'absolute' }}
+                style={{ color: '#6367FF', opacity: isOpen ? 1 : 0, position: 'absolute' }}
               >
                 <X size={20} />
               </span>
