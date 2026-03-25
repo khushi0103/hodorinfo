@@ -85,13 +85,6 @@ function ParticleCanvas() {
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${0.25 + p.energy * 0.4})`;
         ctx.fill();
-
-        if (dist < 150) {
-          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.12 * (1 - dist / 150) + p.energy * 0.3})`;
-          ctx.lineWidth = 0.7 + p.energy * 1;
-          ctx.stroke();
-        }
       });
 
       for (let i = 0; i < pts.length; i++) {

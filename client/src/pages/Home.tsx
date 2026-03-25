@@ -3,7 +3,7 @@ import { Link } from 'wouter';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import StaticFrameContentLoop from '@/components/ui/StaticFrameContentLoop'; // Main Maydiv Component
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { ArrowRight, Zap, Brain, Plane, Shield, BarChart3, Cog, ChevronRight, Sparkles } from 'lucide-react';
 
 function useCountUp(target: number, duration = 1800, start = false) {
@@ -102,13 +102,6 @@ function ParticleCanvas() {
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${0.25 + p.energy * 0.4})`;
         ctx.fill();
-
-        if (dist < 150) {
-          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.12 * (1 - dist / 150) + p.energy * 0.3})`;
-          ctx.lineWidth = 0.7 + p.energy * 1;
-          ctx.stroke();
-        }
       });
 
       for (let i = 0; i < pts.length; i++) {
@@ -177,11 +170,7 @@ function HeroImage() {
       <div style={{ position: 'relative', width: '100%', animation: 'heroFloat 6s ease-in-out infinite' }}>
         {/* Orbital Rings - 3D Perspective */}
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%) rotateX(65deg) rotateY(15deg)', width: '140%', height: '140%', zIndex: 1, pointerEvents: 'none' }}>
-          <div style={{ width: '100%', height: '100%', border: '1px solid rgba(99, 103, 255, 0.2)', borderRadius: '50%', animation: 'rotateFull 25s linear infinite' }}>
-            <div style={{ position: 'absolute', top: '0', left: '50%', transform: 'translate(-50%, -50%)', width: '10px', height: '100%', pointerEvents: 'none' }}>
-               <div style={{ width: '12px', height: '12px', background: '#6367FF', borderRadius: '50%', boxShadow: '0 0 20px #6367FF', animation: 'heroFloat 3s ease-in-out infinite' }} />
-            </div>
-          </div>
+          <div style={{ width: '100%', height: '100%', border: '1px solid rgba(99, 103, 255, 0.2)', borderRadius: '50%', animation: 'rotateFull 25s linear infinite' }} />
         </div>
 
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%) rotateX(-45deg) rotateY(-25deg)', width: '120%', height: '120%', zIndex: 1, pointerEvents: 'none' }}>
@@ -220,6 +209,41 @@ function MagneticButton({ href, primary, label }: { href: string; primary: boole
     </Link>
   );
 }
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1]
+    }
+  }
+};
+
+const imageVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 1.2,
+      ease: [0.16, 1, 0.3, 1],
+      delay: 0.2
+    }
+  }
+};
 
 const services = [
   { icon: Cog, title: 'Enterprise Software', desc: 'Next-generation platforms that automate and optimize complex business processes across any industry.', color: '#00d4ff', href: '/services#service-1' },
@@ -332,24 +356,45 @@ export default function Home() {
           <ParticleCanvas />
           <div style={{ position: 'relative', zIndex: 1, width: '100%', padding: '0 5%' }}>
             <div style={{ maxWidth: '1800px', margin: '0 auto', padding: '40px 0', position: 'relative', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'center', justifyContent: 'space-between' }}>
-              <div style={{ flex: '1 1 600px', maxWidth: '1050px' }}>
-                <div><PulsingBadge /></div>
-                <h1 style={{ fontSize: 'clamp(32px, 4.8vw, 76px)', fontWeight: 500, lineHeight: 1.05, marginBottom: '28px', fontFamily: "'Poppins', sans-serif", letterSpacing: '-0.02em' }}>
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.1 }}
+                variants={containerVariants}
+                style={{ flex: '1 1 600px', maxWidth: '1050px' }}
+              >
+                <motion.div variants={itemVariants}><PulsingBadge /></motion.div>
+                <motion.h1 
+                  variants={itemVariants}
+                  style={{ fontSize: 'clamp(32px, 4.8vw, 76px)', fontWeight: 500, lineHeight: 1.05, marginBottom: '28px', fontFamily: "'Poppins', sans-serif", letterSpacing: '-0.02em' }}
+                >
                   <span className="premium-gradient-text" style={{ paddingRight: '20px' }}>Transform Any Industry</span>
                   <span className="premium-gradient-text" style={{ paddingRight: '20px' }}>with Next-Level</span>
                   <span className="premium-gradient-text" style={{ paddingRight: '20px', paddingBottom: '12px' }}>Technology</span>
-                </h1>
-                <p style={{ fontSize: '20px', color: '#ffffff', lineHeight: 1.8, maxWidth: '640px', marginBottom: '48px', fontWeight: 400 }}>
+                </motion.h1>
+                <motion.p 
+                  variants={itemVariants}
+                  style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', marginBottom: '48px', fontWeight: 400 }}
+                >
                   HodorInfo specializes in digital transformation across all industries. We combine enterprise software, AI, drones, cybersecurity, and data science to revolutionize how businesses operate.
-                </p>
-                <div style={{ display: 'flex', gap: '32px', justifyContent: 'flex-start', flexWrap: 'wrap' }}>
+                </motion.p>
+                <motion.div 
+                  variants={itemVariants}
+                  style={{ display: 'flex', gap: '32px', justifyContent: 'flex-start', flexWrap: 'wrap' }}
+                >
                   <MagneticButton label="Get started" href="/contact" primary={true} />
                   <MagneticButton label="Our Services" href="/services" primary={false} />
-                </div>
-              </div>
-              <div style={{ flex: '1 1 400px', maxWidth: '1000px', position: 'relative', width: '100%', display: 'flex', justifyContent: 'flex-end', margin: '0 auto', transform: 'translate(-60px, 50px)' }}>
+                </motion.div>
+              </motion.div>
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.1 }}
+                variants={imageVariants}
+                style={{ flex: '1 1 400px', maxWidth: '1000px', position: 'relative', width: '100%', display: 'flex', justifyContent: 'flex-end', margin: '0 auto', transform: 'translate(-60px, 50px)' }}
+              >
                 <HeroImage />
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -397,23 +442,29 @@ export default function Home() {
         {/* CTA SECTION */}
         <section style={{ padding: '80px 0', display: 'flex', justifyContent: 'center' }}>
           <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
-            <div style={{ width: '100%', maxWidth: '1000px', borderRadius: '40px', background: 'linear-gradient(90deg, #6367FF 0%, #8494FF 100%)', padding: '56px 40px', textAlign: 'center', position: 'relative', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(12px)', boxShadow: '0 30px 60px rgba(99, 103, 255, 0.25)' }}>
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+              variants={containerVariants}
+              style={{ width: '100%', maxWidth: '1000px', borderRadius: '40px', background: 'linear-gradient(90deg, #6367FF 0%, #8494FF 100%)', padding: '56px 40px', textAlign: 'center', position: 'relative', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(12px)', boxShadow: '0 30px 60px rgba(99, 103, 255, 0.25)' }}
+            >
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.2) 0%, transparent 60%)', pointerEvents: 'none' }} />
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '24px', marginBottom: '32px', position: 'relative', zIndex: 1 }}>
+              <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '24px', marginBottom: '32px', position: 'relative', zIndex: 1 }}>
                 <Sparkles size={14} color="rgba(255,255,255,0.5)" fill="currentColor" />
                 <Sparkles size={20} color="#ffffff" fill="currentColor" style={{ transform: 'translateY(-6px)' }} />
                 <Sparkles size={14} color="rgba(255,255,255,0.5)" fill="currentColor" />
-              </div>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '99px', marginBottom: '24px', background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', position: 'relative', zIndex: 1 }}>
+              </motion.div>
+              <motion.div variants={itemVariants} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '99px', marginBottom: '24px', background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', position: 'relative', zIndex: 1 }}>
                 <span style={{ fontSize: '12px', fontWeight: 600, color: '#ffffff', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Let's work together</span>
-              </div>
-              <h2 style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 600, color: '#ffffff', fontFamily: "'Poppins', sans-serif", lineHeight: 1.25, marginBottom: '24px', textTransform: 'uppercase', letterSpacing: '1px', position: 'relative', zIndex: 1 }}>
+              </motion.div>
+              <motion.h2 variants={itemVariants} style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 600, color: '#ffffff', fontFamily: "'Poppins', sans-serif", lineHeight: 1.25, marginBottom: '24px', textTransform: 'uppercase', letterSpacing: '1px', position: 'relative', zIndex: 1 }}>
                 Ready to Transform<br />Your Industry?
-              </h2>
-              <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.9)', maxWidth: '520px', margin: '0 auto 40px', lineHeight: 1.75, position: 'relative', zIndex: 1 }}>
+              </motion.h2>
+              <motion.p variants={itemVariants} style={{ fontSize: '16px', color: 'rgba(255,255,255,0.9)', maxWidth: '520px', margin: '0 auto 40px', lineHeight: 1.75, position: 'relative', zIndex: 1 }}>
                 Let's discuss how HodorInfo can revolutionize your business with next-level technology solutions.
-              </p>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap', position: 'relative', zIndex: 1 }}>
+              </motion.p>
+              <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap', position: 'relative', zIndex: 1 }}>
                 <Link
                   href="/contact"
                   className="shine-btn"
@@ -423,8 +474,8 @@ export default function Home() {
                 >
                   Schedule a Consultation <ArrowRight size={18} style={{ marginLeft: '10px' }} />
                 </Link>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
 

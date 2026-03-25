@@ -84,13 +84,6 @@ function ParticleCanvas() {
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${0.25 + p.energy * 0.4})`;
         ctx.fill();
-
-        if (dist < 150) {
-          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.12 * (1 - dist / 150) + p.energy * 0.3})`;
-          ctx.lineWidth = 0.7 + p.energy * 1;
-          ctx.stroke();
-        }
       });
 
       for (let i = 0; i < pts.length; i++) {
@@ -243,7 +236,7 @@ export default function Contact() {
       </section>
 
       {/* Contact Section */}
-      <section style={{ padding: '80px 0 140px', position: 'relative', zIndex: 1 }}>
+      <section style={{ padding: '80px 0 140px', position: 'relative', zIndex: 1, overflow: 'hidden' }}>
         <BackgroundGlow color="rgba(0, 212, 255, 0.1)" top="10%" left="-5%" size="600px" />
         <BackgroundGlow color="rgba(176, 38, 255, 0.08)" bottom="10%" right="-5%" size="600px" />
 
