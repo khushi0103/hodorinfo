@@ -229,7 +229,7 @@ const industries = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#0a0e27] relative overflow-x-hidden">
       <style>{`
         @keyframes animatedTextGradient { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
         @keyframes fadeUpReveal { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
@@ -240,149 +240,155 @@ export default function Home() {
         .reveal-delay-4 { animation: fadeUpReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; animation-delay: 0.7s; }
       `}</style>
 
-      <Navigation />
-
-      {/* HERO SECTION */}
-      <section style={{ position: 'relative', overflow: 'hidden', paddingTop: '80px', paddingBottom: '80px', minHeight: '90vh', display: 'flex', alignItems: 'center', background: '#0a0e27' }}>
+      {/* GLOBAL BACKGROUND EFFECTS */}
+      <div className="fixed inset-0 pointer-events-none z-0">
         <StarField />
         <HorizonGlow />
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663026809090/hnrrSqkFZFAiwHyMRLF6Qv/hodor-hero-tech-background-LdQqcCh7PBcqhdmaDGgBHk.webp" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.04 }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(10,14,39,0.8) 0%, rgba(10,14,39,0.4) 50%, rgba(10,14,39,0.8) 100%)' }} />
-        </div>
-        <ParticleCanvas />
-        <div style={{ position: 'relative', zIndex: 1, width: '100%', padding: '0 5%' }}>
-          <div style={{ maxWidth: '1800px', margin: '0 auto', padding: '40px 0', position: 'relative', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div style={{ flex: '1 1 600px', maxWidth: '1050px' }}>
-              <div className="reveal-delay-1"><PulsingBadge /></div>
-              <h1 className="reveal-delay-2" style={{ fontSize: 'clamp(32px, 4.8vw, 76px)', fontWeight: 500, lineHeight: 1.05, marginBottom: '28px', fontFamily: "'Poppins', sans-serif", letterSpacing: '-0.02em' }}>
-                <span className="premium-gradient-text" style={{ paddingRight: '20px' }}>Transform Any Industry</span>
-                <span className="premium-gradient-text" style={{ paddingRight: '20px' }}>with Next-Level</span>
-                <span className="premium-gradient-text" style={{ paddingRight: '20px', paddingBottom: '12px' }}>Technology</span>
-              </h1>
-              <p className="reveal-delay-3" style={{ fontSize: '20px', color: '#ffffff', lineHeight: 1.8, maxWidth: '640px', marginBottom: '48px', fontWeight: 400 }}>
-                HodorInfo specializes in digital transformation across all industries. We combine enterprise software, AI, drones, cybersecurity, and data science to revolutionize how businesses operate.
-              </p>
-              <div className="reveal-delay-4" style={{ display: 'flex', gap: '32px', justifyContent: 'flex-start', flexWrap: 'wrap' }}>
-                <MagneticButton label="Get started" href="/contact" primary={true} />
-                <MagneticButton label="Our Services" href="/services" primary={false} />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0e27]/40 to-[#0a0e27]" />
+      </div>
+
+      <div className="relative z-10">
+        <Navigation />
+
+        {/* HERO SECTION - Now Transparent with local effects */}
+        <section style={{ position: 'relative', overflow: 'hidden', paddingTop: '80px', paddingBottom: '80px', minHeight: '90vh', display: 'flex', alignItems: 'center' }}>
+          <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+            <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663026809090/hnrrSqkFZFAiwHyMRLF6Qv/hodor-hero-tech-background-LdQqcCh7PBcqhdmaDGgBHk.webp" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.04 }} />
+          </div>
+          <ParticleCanvas />
+          <div style={{ position: 'relative', zIndex: 1, width: '100%', padding: '0 5%' }}>
+            <div style={{ maxWidth: '1800px', margin: '0 auto', padding: '40px 0', position: 'relative', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div style={{ flex: '1 1 600px', maxWidth: '1050px' }}>
+                <div className="reveal-delay-1"><PulsingBadge /></div>
+                <h1 className="reveal-delay-2" style={{ fontSize: 'clamp(32px, 4.8vw, 76px)', fontWeight: 500, lineHeight: 1.05, marginBottom: '28px', fontFamily: "'Poppins', sans-serif", letterSpacing: '-0.02em' }}>
+                  <span className="premium-gradient-text" style={{ paddingRight: '20px' }}>Transform Any Industry</span>
+                  <span className="premium-gradient-text" style={{ paddingRight: '20px' }}>with Next-Level</span>
+                  <span className="premium-gradient-text" style={{ paddingRight: '20px', paddingBottom: '12px' }}>Technology</span>
+                </h1>
+                <p className="reveal-delay-3" style={{ fontSize: '20px', color: '#ffffff', lineHeight: 1.8, maxWidth: '640px', marginBottom: '48px', fontWeight: 400 }}>
+                  HodorInfo specializes in digital transformation across all industries. We combine enterprise software, AI, drones, cybersecurity, and data science to revolutionize how businesses operate.
+                </p>
+                <div className="reveal-delay-4" style={{ display: 'flex', gap: '32px', justifyContent: 'flex-start', flexWrap: 'wrap' }}>
+                  <MagneticButton label="Get started" href="/contact" primary={true} />
+                  <MagneticButton label="Our Services" href="/services" primary={false} />
+                </div>
+              </div>
+              <div style={{ flex: '1 1 400px', maxWidth: '600px', position: 'relative', width: '100%', display: 'flex', justifyContent: 'flex-end', margin: '0 auto' }}>
+                <HeroImage />
               </div>
             </div>
-            <div style={{ flex: '1 1 400px', maxWidth: '600px', position: 'relative', width: '100%', display: 'flex', justifyContent: 'flex-end', margin: '0 auto' }}>
-              <HeroImage />
+          </div>
+        </section>
+
+        {/* CORE COMPETENCIES SECTION - MAYDIV STYLE (Static Frames + Moving Content) */}
+        <section style={{ padding: '100px 0 0', background: 'transparent', position: 'relative', zIndex: 1 }}>
+          <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 5%' }}>
+            <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+              <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 700, color: '#ffffff', fontFamily: "'Poppins', sans-serif", marginBottom: '16px', letterSpacing: '-0.02em' }}>Our Core Competencies</h2>
+              <p style={{ fontSize: '18px', color: 'rgba(224,224,224,0.7)', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>Six interconnected technology pillars enabling industry transformation</p>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* CORE COMPETENCIES SECTION - MAYDIV STYLE (Static Frames + Moving Content) */}
-      <section style={{ padding: '100px 0 0', background: 'transparent', position: 'relative', zIndex: 1 }}>
-        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 5%' }}>
-          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 700, color: '#ffffff', fontFamily: "'Poppins', sans-serif", marginBottom: '16px', letterSpacing: '-0.02em' }}>Our Core Competencies</h2>
-            <p style={{ fontSize: '18px', color: 'rgba(224,224,224,0.7)', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>Six interconnected technology pillars enabling industry transformation</p>
-          </div>
+            {/* This is where the fixed frames with looping content live */}
+            <StaticFrameContentLoop data={services} />
 
-          {/* This is where the fixed frames with looping content live */}
-          <StaticFrameContentLoop data={services} />
-
-        </div>
-      </section>
-
-      {/* INDUSTRIES SECTION */}
-      <section style={{ padding: '100px 0' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '64px' }}>
-            <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00d4ff', marginBottom: '14px' }}>Industries</div>
-            <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, color: '#ffffff', fontFamily: "'Poppins', sans-serif", marginBottom: '14px' }}>Industries We Transform</h2>
-            <p style={{ fontSize: '16px', color: 'rgba(224,224,224,0.6)', maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>From logistics to healthcare, we bring digital innovation to every sector</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '14px' }}>
-            {industries.map((ind, i) => (
-              <div key={i}
-                style={{ padding: '20px 18px', borderRadius: '14px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', cursor: 'pointer', transition: 'all 0.25s ease', display: 'flex', alignItems: 'center', gap: '12px' }}
-                onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(-4px)'; el.style.background = 'rgba(0,212,255,0.06)'; el.style.borderColor = 'rgba(0,212,255,0.3)'; el.style.boxShadow = '0 12px 32px rgba(0,212,255,0.12)'; }}
-                onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(0)'; el.style.background = 'rgba(255,255,255,0.03)'; el.style.borderColor = 'rgba(255,255,255,0.08)'; el.style.boxShadow = 'none'; }}
-              >
-                <span style={{ fontSize: '24px', flexShrink: 0 }}>{ind.icon}</span>
-                <span style={{ fontSize: '14px', fontWeight: 600, color: '#e0e0e0' }}>{ind.name}</span>
-                <ChevronRight size={14} style={{ marginLeft: 'auto', color: 'rgba(0,212,255,0.5)', flexShrink: 0 }} />
-              </div>
-            ))}
-          </div>
-          <div style={{ textAlign: 'center', marginTop: '48px' }}>
-            <Link href="/industries">
-              <a style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: 600, color: '#00d4ff', textDecoration: 'none', transition: 'gap 0.2s' }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.gap = '12px'; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.gap = '8px'; }}
-              >View All Industries <ArrowRight size={16} /></a>
-            </Link>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA SECTION */}
-      <section style={{ padding: '80px 0', display: 'flex', justifyContent: 'center' }}>
-        <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
-          <div style={{ width: '100%', maxWidth: '1000px', borderRadius: '40px', background: 'linear-gradient(135deg, #d946ef 0%, #8b5cf6 50%, #4f46e5 100%)', padding: '56px 40px', textAlign: 'center', position: 'relative', overflow: 'hidden', boxShadow: '0 30px 60px rgba(139, 92, 246, 0.25)' }}>
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.2) 0%, transparent 60%)', pointerEvents: 'none' }} />
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '24px', marginBottom: '32px', position: 'relative', zIndex: 1 }}>
-              <Sparkles size={14} color="rgba(255,255,255,0.5)" fill="currentColor" />
-              <Sparkles size={20} color="#ffffff" fill="currentColor" style={{ transform: 'translateY(-6px)' }} />
-              <Sparkles size={14} color="rgba(255,255,255,0.5)" fill="currentColor" />
+        {/* INDUSTRIES SECTION */}
+        <section style={{ padding: '100px 0' }}>
+          <div className="container">
+            <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+              <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00d4ff', marginBottom: '14px' }}>Industries</div>
+              <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, color: '#ffffff', fontFamily: "'Poppins', sans-serif", marginBottom: '14px' }}>Industries We Transform</h2>
+              <p style={{ fontSize: '16px', color: 'rgba(224,224,224,0.6)', maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>From logistics to healthcare, we bring digital innovation to every sector</p>
             </div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '99px', marginBottom: '24px', background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', position: 'relative', zIndex: 1 }}>
-              <span style={{ fontSize: '12px', fontWeight: 600, color: '#ffffff', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Let's work together</span>
-            </div>
-            <h2 style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 600, color: '#ffffff', fontFamily: "'Poppins', sans-serif", lineHeight: 1.25, marginBottom: '24px', textTransform: 'uppercase', letterSpacing: '1px', position: 'relative', zIndex: 1 }}>
-              Ready to Transform<br />Your Industry?
-            </h2>
-            <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.9)', maxWidth: '520px', margin: '0 auto 40px', lineHeight: 1.75, position: 'relative', zIndex: 1 }}>
-              Let's discuss how HodorInfo can revolutionize your business with next-level technology solutions.
-            </p>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap', position: 'relative', zIndex: 1 }}>
-              <Link href="/contact">
-                <a className="shine-btn"
-                  style={{ padding: '16px 40px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 600, fontSize: '15px', textDecoration: 'none', transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: '160px', position: 'relative', overflow: 'hidden' }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.05)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)'; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '14px' }}>
+              {industries.map((ind, i) => (
+                <div key={i}
+                  style={{ padding: '20px 18px', borderRadius: '14px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', cursor: 'pointer', transition: 'all 0.25s ease', display: 'flex', alignItems: 'center', gap: '12px' }}
+                  onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(-4px)'; el.style.background = 'rgba(0,212,255,0.06)'; el.style.borderColor = 'rgba(0,212,255,0.3)'; el.style.boxShadow = '0 12px 32px rgba(0,212,255,0.12)'; }}
+                  onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(0)'; el.style.background = 'rgba(255,255,255,0.03)'; el.style.borderColor = 'rgba(255,255,255,0.08)'; el.style.boxShadow = 'none'; }}
                 >
-                  Schedule a Consultation <ArrowRight size={18} style={{ marginLeft: '10px' }} />
-                </a>
+                  <span style={{ fontSize: '24px', flexShrink: 0 }}>{ind.icon}</span>
+                  <span style={{ fontSize: '14px', fontWeight: 600, color: '#e0e0e0' }}>{ind.name}</span>
+                  <ChevronRight size={14} style={{ marginLeft: 'auto', color: 'rgba(0,212,255,0.5)', flexShrink: 0 }} />
+                </div>
+              ))}
+            </div>
+            <div style={{ textAlign: 'center', marginTop: '48px' }}>
+              <Link href="/industries">
+                <a style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: 600, color: '#00d4ff', textDecoration: 'none', transition: 'gap 0.2s' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.gap = '12px'; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.gap = '8px'; }}
+                >View All Industries <ArrowRight size={16} /></a>
               </Link>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <Footer />
+        {/* CTA SECTION */}
+        <section style={{ padding: '80px 0', display: 'flex', justifyContent: 'center' }}>
+          <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ width: '100%', maxWidth: '1000px', borderRadius: '40px', background: 'linear-gradient(135deg, #d946ef 0%, #8b5cf6 50%, #4f46e5 100%)', padding: '56px 40px', textAlign: 'center', position: 'relative', overflow: 'hidden', boxShadow: '0 30px 60px rgba(139, 92, 246, 0.25)' }}>
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.2) 0%, transparent 60%)', pointerEvents: 'none' }} />
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '24px', marginBottom: '32px', position: 'relative', zIndex: 1 }}>
+                <Sparkles size={14} color="rgba(255,255,255,0.5)" fill="currentColor" />
+                <Sparkles size={20} color="#ffffff" fill="currentColor" style={{ transform: 'translateY(-6px)' }} />
+                <Sparkles size={14} color="rgba(255,255,255,0.5)" fill="currentColor" />
+              </div>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '99px', marginBottom: '24px', background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', position: 'relative', zIndex: 1 }}>
+                <span style={{ fontSize: '12px', fontWeight: 600, color: '#ffffff', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Let's work together</span>
+              </div>
+              <h2 style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 600, color: '#ffffff', fontFamily: "'Poppins', sans-serif", lineHeight: 1.25, marginBottom: '24px', textTransform: 'uppercase', letterSpacing: '1px', position: 'relative', zIndex: 1 }}>
+                Ready to Transform<br />Your Industry?
+              </h2>
+              <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.9)', maxWidth: '520px', margin: '0 auto 40px', lineHeight: 1.75, position: 'relative', zIndex: 1 }}>
+                Let's discuss how HodorInfo can revolutionize your business with next-level technology solutions.
+              </p>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap', position: 'relative', zIndex: 1 }}>
+                <Link href="/contact">
+                  <a className="shine-btn"
+                    style={{ padding: '16px 40px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 600, fontSize: '15px', textDecoration: 'none', transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: '160px', position: 'relative', overflow: 'hidden' }}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.05)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)'; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
+                  >
+                    Schedule a Consultation <ArrowRight size={18} style={{ marginLeft: '10px' }} />
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <style>{`
-        .heading-line-1 { display: inline-block; background: linear-gradient(90deg, #ff72e1, #c084fc, #818cf8, #38bdf8, #c084fc, #ff72e1); background-size: 300% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: slideGrad1 8s linear infinite; }
-        .heading-line-2 { display: inline-block; background: linear-gradient(90deg, #c084fc, #818cf8, #38bdf8, #a78bfa, #f472b6, #c084fc); background-size: 300% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: slideGrad2 8s linear infinite; animation-delay: -4s; font-weight: 500; }
-        @keyframes slideGrad1 { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
-        @keyframes slideGrad2 { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
-        @keyframes pulse-ping { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(2.5); opacity: 0; } }
-        @keyframes heroFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-25px); } }
-        @keyframes rotateClockwise { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
-        @keyframes rotateCounterClockwise { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(-360deg); } }
-        @keyframes shimmerSwipe { 0% { left: -100%; } 100% { left: 150%; } }
-        .shine-btn::after {
-          content: '';
-          position: absolute;
-          top: -100%;
-          left: -100%;
-          width: 50%;
-          height: 300%;
-          background: rgba(255, 255, 255, 0.25);
-          transform: rotate(35deg);
-          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-          pointer-events: none;
-        }
-        .shine-btn:hover::after {
-          left: 150%;
-        }
-      `}</style>
+        <Footer />
+
+        <style>{`
+          .heading-line-1 { display: inline-block; background: linear-gradient(90deg, #ff72e1, #c084fc, #818cf8, #38bdf8, #c084fc, #ff72e1); background-size: 300% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: slideGrad1 8s linear infinite; }
+          .heading-line-2 { display: inline-block; background: linear-gradient(90deg, #c084fc, #818cf8, #38bdf8, #a78bfa, #f472b6, #c084fc); background-size: 300% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: slideGrad2 8s linear infinite; animation-delay: -4s; font-weight: 500; }
+          @keyframes slideGrad1 { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
+          @keyframes slideGrad2 { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
+          @keyframes pulse-ping { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(2.5); opacity: 0; } }
+          @keyframes heroFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-25px); } }
+          @keyframes rotateClockwise { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+          @keyframes rotateCounterClockwise { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(-360deg); } }
+          @keyframes shimmerSwipe { 0% { left: -100%; } 100% { left: 150%; } }
+          .shine-btn::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 50%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.25);
+            transform: rotate(35deg);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+          }
+          .shine-btn:hover::after {
+            left: 150%;
+          }
+        `}</style>
+      </div>
     </div>
   );
 }

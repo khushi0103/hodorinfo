@@ -151,21 +151,21 @@ export default function Navigation() {
             <Link href="/">
               <a className="flex items-center group" style={{ gap: '10px', textDecoration: 'none' }}>
                 <div
-                  className="flex items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-105"
+                  className="flex items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110"
                   style={{
-                    width: '40px',
-                    height: '40px',
-                    background: 'linear-gradient(135deg, #00d4ff 0%, #a78bfa 100%)',
-                    boxShadow: '0 0 18px rgba(0, 212, 255, 0.35)',
+                    width: '44px',
+                    height: '44px',
+                    background: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #d946ef 100%)',
+                    boxShadow: '0 0 20px rgba(6, 182, 212, 0.4)',
                     flexShrink: 0,
-                    transition: 'transform 0.3s',
+                    transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
                   }}
                 >
                   <span
                     style={{
                       fontWeight: 800,
-                      color: '#0a0e27',
-                      fontSize: '17px',
+                      color: '#ffffff',
+                      fontSize: '20px',
                       lineHeight: 1,
                       transition: 'none',
                     }}
