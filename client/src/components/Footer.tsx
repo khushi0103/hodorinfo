@@ -84,11 +84,17 @@ export default function Footer() {
           </div>
 
           {/* BOTTOM COPYRIGHT - COMPACT */}
-          <div className="flex flex-col items-center justify-center space-y-2 pt-6 opacity-60">
-            <p className="text-white/40 text-[10px] md:text-[11px] uppercase tracking-[0.4em] font-bold">
+          <div className="flex flex-col items-center justify-center space-y-2 pt-6">
+            <p 
+              className="uppercase tracking-[0.3em] text-center" 
+              style={{ fontSize: '13px', lineHeight: '1.2', color: 'rgba(255, 255, 255, 0.6)' }}
+            >
               © {currentYear} HodorInfo. All rights reserved.
             </p>
-            <p className="text-white/20 text-[9px] uppercase tracking-[0.2em] hidden md:block">
+            <p 
+              className="uppercase tracking-[0.15em] hidden md:block text-center"
+              style={{ fontSize: '11px', marginTop: '4px', color: 'rgba(255, 255, 255, 0.4)' }}
+            >
               Crafting Digital Excellence for Enterprise Innovation
             </p>
           </div>

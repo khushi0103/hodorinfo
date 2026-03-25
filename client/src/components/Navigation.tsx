@@ -202,42 +202,42 @@ export default function Navigation() {
                       onMouseEnter={() => { handleMegaEnter(); setHoveredLink(link.label); }}
                       onMouseLeave={() => { handleMegaLeave(); setHoveredLink(null); }}
                     >
-                    <a
-                      ref={megaTriggerRef as any}
-                      href={link.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        window.history.pushState({}, '', link.href);
-                        window.dispatchEvent(new PopStateEvent('popstate'));
-                        setMegaOpen(false);
-                        window.scrollTo({ top: 0, behavior: 'auto' });
-                      }}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '5px',
-                        padding: '10px 12px',
-                        borderRadius: '8px',
-                        fontSize: '18px',
-                        fontWeight: 500,
-                        color: '#ffffff',
-                        background: megaOpen ? 'rgba(0,212,255,0.08)' : 'transparent',
-                        border: 'none',
-                        cursor: 'pointer',
-                        textDecoration: 'none',
-                        transition: 'background 0.2s, color 0.2s',
-                        letterSpacing: '0.01em',
-                      }}
-                    >
-                      {link.label}
-                      <ChevronDown
-                        size={14}
-                        style={{
-                          transform: megaOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                          transition: 'transform 0.2s',
+                      <a
+                        ref={megaTriggerRef as any}
+                        href={link.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.history.pushState({}, '', link.href);
+                          window.dispatchEvent(new PopStateEvent('popstate'));
+                          setMegaOpen(false);
+                          window.scrollTo({ top: 0, behavior: 'auto' });
                         }}
-                      />
-                    </a>
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '5px',
+                          padding: '10px 12px',
+                          borderRadius: '8px',
+                          fontSize: '18px',
+                          fontWeight: 500,
+                          color: '#ffffff',
+                          background: megaOpen ? 'rgba(0,212,255,0.08)' : 'transparent',
+                          border: 'none',
+                          cursor: 'pointer',
+                          textDecoration: 'none',
+                          transition: 'background 0.2s, color 0.2s',
+                          letterSpacing: '0.01em',
+                        }}
+                      >
+                        {link.label}
+                        <ChevronDown
+                          size={14}
+                          style={{
+                            transform: megaOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                            transition: 'transform 0.2s',
+                          }}
+                        />
+                      </a>
                       <span
                         style={{
                           display: 'block',
@@ -456,7 +456,7 @@ export default function Navigation() {
                         window.history.pushState({}, '', svc.href);
                         window.dispatchEvent(new PopStateEvent('popstate'));
                         setMegaOpen(false);
-                        
+
                         // If we were already on the services page, the hash change alone might not trigger the scroll
                         // so we manually trigger it if needed
                         if (wasAlreadyOnServices && svc.href.includes('#')) {

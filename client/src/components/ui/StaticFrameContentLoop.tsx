@@ -8,6 +8,7 @@ interface ServiceData {
     desc: string;
     color: string;
     icon: any;
+    href?: string;
 }
 
 const StaticFrameContentLoop = ({ data }: { data: ServiceData[] }) => {
@@ -91,7 +92,7 @@ const StaticFrameContentLoop = ({ data }: { data: ServiceData[] }) => {
                                 <h3 style={{ pointerEvents: 'none' }}>{item.title}</h3>
                                 <p style={{ pointerEvents: 'none' }}>{item.desc}</p>
                                 <div style={{ marginTop: 'auto' }}>
-                                    <Link href="/services">
+                                    <Link href={item.href || "/services"}>
                                         <div className="explore-link" style={{ color: item.color, cursor: 'pointer' }}>
                                             Explore Expertise <ChevronRight size={14} />
                                         </div>

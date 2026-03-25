@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import StaticFrameContentLoop from '@/components/ui/StaticFrameContentLoop'; // Main Maydiv Component
+import { motion } from 'framer-motion';
 import { ArrowRight, Zap, Brain, Plane, Shield, BarChart3, Cog, ChevronRight, Sparkles } from 'lucide-react';
 
 function useCountUp(target: number, duration = 1800, start = false) {
@@ -208,12 +209,12 @@ function MagneticButton({ href, primary, label }: { href: string; primary: boole
 }
 
 const services = [
-  { icon: Cog, title: 'Enterprise Software', desc: 'Next-generation platforms that automate and optimize complex business processes across any industry.', color: '#00d4ff' },
-  { icon: Brain, title: 'AI & Machine Learning', desc: 'Deploy intelligent agents and ML models to automate decision-making and predictive analytics.', color: '#a78bfa' },
-  { icon: Plane, title: 'Drone Technology', desc: 'Design, deploy, and manage drone systems for industrial applications and aerial solutions.', color: '#34d399' },
-  { icon: Shield, title: 'Cybersecurity', desc: 'Specialized protection for drones, satellites, and critical aerospace systems.', color: '#fb923c' },
-  { icon: BarChart3, title: 'Data Science', desc: 'Extract insights and drive decisions with advanced analytics and data engineering.', color: '#f472b6' },
-  { icon: Zap, title: 'Digital Transformation', desc: 'Guide organizations through comprehensive modernization and technology integration.', color: '#facc15' },
+  { icon: Cog, title: 'Enterprise Software', desc: 'Next-generation platforms that automate and optimize complex business processes across any industry.', color: '#00d4ff', href: '/services#service-1' },
+  { icon: Brain, title: 'AI & Machine Learning', desc: 'Deploy intelligent agents and ML models to automate decision-making and predictive analytics.', color: '#a78bfa', href: '/services#service-2' },
+  { icon: Plane, title: 'Drone Technology', desc: 'Design, deploy, and manage drone systems for industrial applications and aerial solutions.', color: '#34d399', href: '/services#service-3' },
+  { icon: Shield, title: 'Cybersecurity', desc: 'Specialized protection for drones, satellites, and critical aerospace systems.', color: '#fb923c', href: '/services#service-4' },
+  { icon: BarChart3, title: 'Data Science', desc: 'Extract insights and drive decisions with advanced analytics and data engineering.', color: '#f472b6', href: '/services#service-5' },
+  { icon: Zap, title: 'Digital Transformation', desc: 'Guide organizations through comprehensive modernization and technology integration.', color: '#facc15', href: '/services#service-6' },
 ];
 
 const industries = [
@@ -227,23 +228,6 @@ const industries = [
   { name: 'Government & Defense', icon: '🏛️' },
 ];
 
-function MouseTrail() {
-  const [points, setPoints] = useState<{ x: number; y: number; id: number }[]>([]);
-  useEffect(() => {
-    const handleMove = (e: MouseEvent) => {
-      setPoints((prev) => [...prev.slice(-15), { x: e.clientX, y: e.clientY, id: Math.random() + Date.now() }]);
-    };
-    window.addEventListener('mousemove', handleMove);
-    return () => window.removeEventListener('mousemove', handleMove);
-  }, []);
-  return (
-    <div className="fixed inset-0 pointer-events-none z-50">
-      {points.map((p, i) => (
-        <div key={p.id} style={{ position: 'fixed', left: p.x, top: p.y, width: '6px', height: '6px', background: '#00d4ff', borderRadius: '50%', opacity: (i / points.length) * 0.5, transform: `scale(${i / points.length})`, filter: 'blur(2px)', transition: 'all 0.1s ease' }} />
-      ))}
-    </div>
-  );
-}
 
 function FloatingAccents() {
   return (
@@ -271,8 +255,6 @@ export default function Home() {
         <FloatingAccents />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0e27]/40 to-[#0a0e27]" />
       </div>
-
-      <MouseTrail />
 
       <div className="relative z-10">
         <Navigation />
@@ -325,7 +307,7 @@ export default function Home() {
         <section style={{ padding: '100px 0' }}>
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: '64px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00d4ff', marginBottom: '14px' }}>Industries</div>
+              <div style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#00d4ff', marginBottom: '16px' }}>Industries</div>
               <h2 className="premium-gradient-text" style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, fontFamily: "'Poppins', sans-serif", marginBottom: '14px' }}>Industries We Transform</h2>
               <p style={{ fontSize: '16px', color: 'rgba(224,224,224,0.6)', maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>From logistics to healthcare, we bring digital innovation to every sector</p>
             </div>
@@ -333,35 +315,35 @@ export default function Home() {
               {industries.map((ind, i) => (
                 <div key={i}
                   style={{ padding: '20px 18px', borderRadius: '14px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', cursor: 'pointer', transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)', display: 'flex', alignItems: 'center', gap: '12px', position: 'relative', overflow: 'hidden' }}
-                  onMouseEnter={(e) => { 
-                    const el = e.currentTarget as HTMLElement; 
-                    el.style.transform = 'translateY(-10px) scale(1.02)'; 
-                    el.style.background = 'rgba(0,212,255,0.1)'; 
-                    el.style.borderColor = 'rgba(0,212,255,0.4)'; 
-                    el.style.boxShadow = '0 20px 40px rgba(0,212,255,0.15), inset 0 0 20px rgba(0,212,255,0.2)'; 
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.transform = 'translateY(-10px) scale(1.02)';
+                    el.style.background = 'rgba(0,212,255,0.1)';
+                    el.style.borderColor = 'rgba(0,212,255,0.4)';
+                    el.style.boxShadow = '0 20px 40px rgba(0,212,255,0.15), inset 0 0 20px rgba(0,212,255,0.2)';
                   }}
-                  onMouseLeave={(e) => { 
-                    const el = e.currentTarget as HTMLElement; 
-                    el.style.transform = 'translateY(0) scale(1)'; 
-                    el.style.background = 'rgba(255,255,255,0.03)'; 
-                    el.style.borderColor = 'rgba(255,255,255,0.08)'; 
-                    el.style.boxShadow = 'none'; 
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.transform = 'translateY(0) scale(1)';
+                    el.style.background = 'rgba(255,255,255,0.03)';
+                    el.style.borderColor = 'rgba(255,255,255,0.08)';
+                    el.style.boxShadow = 'none';
                   }}
                 >
                   <span style={{ fontSize: '24px', flexShrink: 0 }}>{ind.icon}</span>
-                  <span style={{ fontSize: '14px', fontWeight: 600, color: '#e0e0e0' }}>{ind.name}</span>
+                  <span style={{ fontSize: '15.5px', fontWeight: 600, color: '#e0e0e0' }}>{ind.name}</span>
                   <ChevronRight size={14} style={{ marginLeft: 'auto', color: 'rgba(0,212,255,0.5)', flexShrink: 0 }} />
                 </div>
               ))}
             </div>
             <div style={{ textAlign: 'center', marginTop: '48px' }}>
-              <Link 
+              <Link
                 href="/industries"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: 600, color: '#00d4ff', textDecoration: 'none', transition: 'gap 0.2s' }}
-                onMouseEnter={(e: any) => { (e.currentTarget as HTMLElement).style.gap = '12px'; }}
-                onMouseLeave={(e: any) => { (e.currentTarget as HTMLElement).style.gap = '8px'; }}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '17.5px', fontWeight: 600, color: '#00d4ff', textDecoration: 'none', transition: 'gap 0.2s' }}
+                onMouseEnter={(e: any) => { (e.currentTarget as HTMLElement).style.gap = '14px'; }}
+                onMouseLeave={(e: any) => { (e.currentTarget as HTMLElement).style.gap = '10px'; }}
               >
-                View All Industries <ArrowRight size={16} />
+                View All Industries <ArrowRight size={20} />
               </Link>
             </div>
           </div>

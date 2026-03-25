@@ -398,7 +398,9 @@ export default function Services() {
             const Icon = service.icon;
             // Define a customized ref for scroll tracing
             return (
-              <motion.div key={service.id} id={`service-${service.id}`}
+              <motion.div
+                key={service.id}
+                id={`service-${service.id}`}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.25 }}
@@ -410,7 +412,8 @@ export default function Services() {
                   alignItems: 'center',
                   marginBottom: '140px',
                   flexWrap: 'wrap'
-                }}>
+                }}
+              >
 
                 {/* Content Side */}
                 <motion.div variants={containerVariants} style={{ flex: '1 1 500px' }}>

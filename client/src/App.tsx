@@ -9,6 +9,17 @@ import Services from "./pages/Services";
 import Industries from "./pages/Industries";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import MouseTrail from "@/components/ui/MouseTrail";
+import { useLocation } from "wouter";
+import { useEffect } from "react";
+
+function ScrollToTop() {
+  const [pathname] = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 
 
 function Router() {
@@ -34,6 +45,8 @@ function App() {
       >
         <TooltipProvider>
           <Toaster />
+          <ScrollToTop />
+          <MouseTrail />
           <Router />
         </TooltipProvider>
       </ThemeProvider>
