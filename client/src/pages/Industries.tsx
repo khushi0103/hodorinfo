@@ -127,13 +127,6 @@ function StarField() {
   );
 }
 
-function HorizonGlow() {
-  return (
-    <div style={{ position: 'absolute', top: '0', left: '-10%', right: '-10%', height: '40%', zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: '0', left: '50%', transform: 'translateX(-50%)', width: '160%', height: '100%', background: 'radial-gradient(ellipse at top, rgba(99, 103, 255, 0.15) 0%, rgba(132, 148, 255, 0.05) 40%, transparent 75%)', filter: 'blur(100px)' }} />
-    </div>
-  );
-}
 
 function PulsingBadge({ text }: { text: string }) {
   return (
@@ -331,7 +324,6 @@ export default function Industries() {
       {/* Hero Section */}
       <section style={{ position: 'relative', overflow: 'hidden', paddingTop: '160px', paddingBottom: '120px', display: 'flex', alignItems: 'center' }}>
         <StarField />
-        <HorizonGlow />
         <ParticleCanvas />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <motion.div
@@ -342,7 +334,7 @@ export default function Industries() {
             style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}
           >
             <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center' }}><PulsingBadge text="Global Impact" /></motion.div>
-            <motion.h1 variants={itemVariants} className="premium-gradient-text" style={{ fontSize: 'clamp(40px, 6vw, 72px)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em', margin: '0 auto 24px' }}>
+            <motion.h1 variants={itemVariants} className="premium-gradient-text" style={{ fontSize: 'clamp(28px, 4.2vw, 64px)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em', margin: '0 auto 24px' }}>
               Industries We Transform
             </motion.h1>
             <motion.p variants={itemVariants} style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', margin: '0 auto' }}>
@@ -546,35 +538,44 @@ export default function Industries() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section style={{ padding: '120px 0 160px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
-        <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className="container mx-auto px-6" style={{ display: 'flex', justifyContent: 'center' }}>
           <motion.div
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            variants={containerVariants}
-            style={{ width: '100%', maxWidth: '1000px', borderRadius: '40px', background: 'linear-gradient(90deg, #6367FF 0%, #8494FF 100%)', padding: '64px 40px', textAlign: 'center', position: 'relative', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(12px)', boxShadow: '0 30px 60px rgba(99, 103, 255, 0.25)' }}
+            style={{ 
+              width: '100%', 
+              maxWidth: '1400px', 
+              borderRadius: '60px', 
+              background: 'linear-gradient(145deg, rgba(99, 103, 255, 0.95) 0%, rgba(132, 148, 255, 0.85) 100%)', 
+              padding: '64px 40px', 
+              textAlign: 'center', 
+              position: 'relative', 
+              overflow: 'hidden', 
+              border: '1px solid rgba(255, 255, 255, 0.2)', 
+              backdropFilter: 'blur(12px)', 
+              boxShadow: '0 40px 80px rgba(99, 103, 255, 0.3)' 
+            }}
           >
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.2) 0%, transparent 60%)', pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.3) 0%, transparent 60%)', pointerEvents: 'none' }} />
             <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '24px', marginBottom: '32px', position: 'relative', zIndex: 1 }}>
               <Sparkles size={14} color="rgba(255,255,255,0.5)" fill="currentColor" />
               <Sparkles size={20} color="#ffffff" fill="currentColor" style={{ transform: 'translateY(-6px)' }} />
               <Sparkles size={14} color="rgba(255,255,255,0.5)" fill="currentColor" />
             </motion.div>
-
-            <motion.h2 variants={itemVariants} style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 600, color: '#ffffff', lineHeight: 1.25, marginBottom: '24px', textTransform: 'uppercase', letterSpacing: '1px', position: 'relative', zIndex: 1 }}>
+            <motion.h2 variants={itemVariants} style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 800, color: '#ffffff', lineHeight: 1.25, marginBottom: '24px', textTransform: 'uppercase', letterSpacing: '1px', position: 'relative', zIndex: 1 }}>
               Ready to Transform<br />Your Strategy?
             </motion.h2>
-            <motion.p variants={itemVariants} style={{ fontSize: '18px', color: 'rgba(255,255,255,0.9)', maxWidth: '520px', margin: '0 auto 40px', lineHeight: 1.75, position: 'relative', zIndex: 1 }}>
+            <p style={{ fontSize: '20px', color: 'rgba(255,255,255,0.95)', maxWidth: '640px', margin: '0 auto 40px', lineHeight: 1.75, position: 'relative', zIndex: 1 }}>
               Let's discuss how HodorInfo can revolutionize your industry with bespoke technology solutions.
-            </motion.p>
+            </p>
             <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
               <Link href="/contact">
                 <a className="shine-btn"
-                  style={{ padding: '18px 48px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 600, fontSize: '16px', textDecoration: 'none', transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: '180px', position: 'relative', overflow: 'hidden' }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.05)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)'; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
+                  style={{ padding: '18px 48px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 700, fontSize: '16px', textDecoration: 'none', transition: 'all 0.3s ease', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: '180px', position: 'relative', overflow: 'hidden' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)'; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
                 >
                   Get Started Today <ArrowRight size={20} style={{ marginLeft: '12px' }} />
                 </a>
@@ -583,6 +584,7 @@ export default function Industries() {
           </motion.div>
         </div>
       </section>
+
 
       <Footer />
     </div>

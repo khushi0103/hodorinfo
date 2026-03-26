@@ -145,14 +145,6 @@ function StarField() {
   );
 }
 
-function HorizonGlow() {
-  return (
-    <div style={{ position: 'absolute', bottom: '-20%', left: '-10%', right: '-10%', height: '60%', zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', bottom: '0', left: '50%', transform: 'translateX(-50%)', width: '160%', height: '100%', background: 'radial-gradient(ellipse at bottom, rgba(99, 103, 255, 0.2) 0%, rgba(132, 148, 255, 0.08) 40%, transparent 75%)', filter: 'blur(120px)' }} />
-      <div style={{ position: 'absolute', bottom: '-10%', left: '20%', width: '70%', height: '90%', background: 'radial-gradient(circle, rgba(99, 103, 255, 0.12) 0%, transparent 70%)', filter: 'blur(140px)' }} />
-    </div>
-  );
-}
 
 function PulsingBadge() {
   return (
@@ -354,7 +346,6 @@ export default function Home() {
       {/* GLOBAL BACKGROUND EFFECTS */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <StarField />
-        <HorizonGlow />
         <FloatingAccents />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0e27]/40 to-[#0a0e27]" />
       </div>
@@ -368,8 +359,8 @@ export default function Home() {
             <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663026809090/hnrrSqkFZFAiwHyMRLF6Qv/hodor-hero-tech-background-LdQqcCh7PBcqhdmaDGgBHk.webp" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.04 }} />
           </div>
           <ParticleCanvas />
-          <div style={{ position: 'relative', zIndex: 1, width: '100%', padding: '0 5%' }}>
-            <div style={{ maxWidth: '1800px', margin: '0 auto', padding: '40px 0', position: 'relative', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div className="container mx-auto px-6 relative z-10">
+            <div style={{ padding: '40px 0', position: 'relative', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'center', justifyContent: 'space-between' }}>
               <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -379,16 +370,39 @@ export default function Home() {
               >
                 <motion.div variants={itemVariants}><PulsingBadge /></motion.div>
                 <motion.h1
-                  variants={itemVariants}
-                  style={{ fontSize: 'clamp(32px, 4.8vw, 76px)', fontWeight: 500, lineHeight: 1.05, marginBottom: '28px', fontFamily: "'Poppins', sans-serif", letterSpacing: '-0.02em' }}
+                  style={{ fontSize: 'clamp(28px, 4.2vw, 64px)', fontWeight: 500, lineHeight: 1.1, marginBottom: '28px', fontFamily: "'Poppins', sans-serif", letterSpacing: '-0.02em', overflow: 'hidden' }}
                 >
-                  <span className="premium-gradient-text" style={{ paddingRight: '20px' }}>Transform Any Industry</span>
-                  <span className="premium-gradient-text" style={{ paddingRight: '20px' }}>with Next-Level</span>
-                  <span className="premium-gradient-text" style={{ paddingRight: '20px', paddingBottom: '12px' }}>Technology</span>
+                  <motion.span
+                    initial={{ opacity: 0, y: -40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="premium-gradient-text"
+                    style={{ paddingRight: '20px' }}
+                  >
+                    Transform Any Industry
+                  </motion.span>
+                  <motion.span
+                    initial={{ opacity: 0, x: -60 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1.4, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    className="premium-gradient-text"
+                    style={{ paddingRight: '20px' }}
+                  >
+                    with Next-Level
+                  </motion.span>
+                  <motion.span
+                    initial={{ opacity: 0, x: 60 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1.4, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+                    className="premium-gradient-text"
+                    style={{ paddingRight: '20px', paddingBottom: '12px' }}
+                  >
+                    Technology
+                  </motion.span>
                 </motion.h1>
                 <motion.p
                   variants={itemVariants}
-                  style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', marginBottom: '48px', fontWeight: 400 }}
+                  style={{ fontSize: 'clamp(16px, 1.1vw, 18px)', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', marginBottom: '48px', fontWeight: 400 }}
                 >
                   HodorInfo specializes in digital transformation across all industries. We combine enterprise software, AI, drones, cybersecurity, and data science to revolutionize how businesses operate.
                 </motion.p>
@@ -415,7 +429,7 @@ export default function Home() {
 
         {/* CORE COMPETENCIES SECTION - MAYDIV STYLE (Static Frames + Moving Content) */}
         <section style={{ padding: '100px 0 0', background: 'transparent', position: 'relative', zIndex: 1 }}>
-          <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 5%' }}>
+          <div className="container mx-auto px-6">
             <div style={{ textAlign: 'center', marginBottom: '48px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <h2 className="premium-gradient-text" style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 700, fontFamily: "'Poppins', sans-serif", marginBottom: '16px', letterSpacing: '-0.02em' }}>Our Core Competencies</h2>
               <p style={{ fontSize: '18px', color: 'rgba(224,224,224,0.7)', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>Six interconnected technology pillars enabling industry transformation</p>
@@ -429,7 +443,7 @@ export default function Home() {
 
         {/* INDUSTRIES SECTION */}
         <section style={{ padding: '100px 0' }}>
-          <div className="container">
+          <div className="container mx-auto px-6">
             <div style={{ textAlign: 'center', marginBottom: '64px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#00d4ff', marginBottom: '16px' }}>Industries</div>
               <h2 className="premium-gradient-text" style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, fontFamily: "'Poppins', sans-serif", marginBottom: '14px' }}>Industries We Transform</h2>
@@ -454,39 +468,49 @@ export default function Home() {
         </section>
 
         {/* CTA SECTION */}
-        <section style={{ padding: '80px 0', display: 'flex', justifyContent: 'center' }}>
-          <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
+        <section style={{ padding: '80px 0 140px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+          <div className="container mx-auto px-6" style={{ display: 'flex', justifyContent: 'center' }}>
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.2 }}
+              viewport={{ once: true }}
               variants={containerVariants}
-              style={{ width: '100%', maxWidth: '1000px', borderRadius: '40px', background: 'linear-gradient(90deg, #6367FF 0%, #8494FF 100%)', padding: '56px 40px', textAlign: 'center', position: 'relative', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(12px)', boxShadow: '0 30px 60px rgba(99, 103, 255, 0.25)' }}
+              style={{ 
+                width: '100%', 
+                maxWidth: '1400px', 
+                borderRadius: '60px', 
+                background: 'linear-gradient(145deg, rgba(99, 103, 255, 0.95) 0%, rgba(132, 148, 255, 0.85) 100%)', 
+                padding: '64px 40px', 
+                textAlign: 'center', 
+                position: 'relative', 
+                overflow: 'hidden', 
+                border: '1px solid rgba(255, 255, 255, 0.2)', 
+                backdropFilter: 'blur(12px)', 
+                boxShadow: '0 40px 80px rgba(99, 103, 255, 0.3)' 
+              }}
             >
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.2) 0%, transparent 60%)', pointerEvents: 'none' }} />
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.3) 0%, transparent 60%)', pointerEvents: 'none' }} />
               <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '24px', marginBottom: '32px', position: 'relative', zIndex: 1 }}>
                 <Sparkles size={14} color="rgba(255,255,255,0.5)" fill="currentColor" />
                 <Sparkles size={20} color="#ffffff" fill="currentColor" style={{ transform: 'translateY(-6px)' }} />
                 <Sparkles size={14} color="rgba(255,255,255,0.5)" fill="currentColor" />
               </motion.div>
-              <motion.div variants={itemVariants} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '99px', marginBottom: '24px', background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', position: 'relative', zIndex: 1 }}>
-                <span style={{ fontSize: '12px', fontWeight: 600, color: '#ffffff', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Let's work together</span>
-              </motion.div>
-              <motion.h2 variants={itemVariants} style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 600, color: '#ffffff', fontFamily: "'Poppins', sans-serif", lineHeight: 1.25, marginBottom: '24px', textTransform: 'uppercase', letterSpacing: '1px', position: 'relative', zIndex: 1 }}>
+
+              <motion.h2 variants={itemVariants} style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 800, color: '#ffffff', lineHeight: 1.25, marginBottom: '24px', textTransform: 'uppercase', letterSpacing: '1px', position: 'relative', zIndex: 1 }}>
                 Ready to Transform<br />Your Industry?
               </motion.h2>
-              <motion.p variants={itemVariants} style={{ fontSize: '16px', color: 'rgba(255,255,255,0.9)', maxWidth: '520px', margin: '0 auto 40px', lineHeight: 1.75, position: 'relative', zIndex: 1 }}>
+              <motion.p variants={itemVariants} style={{ fontSize: '20px', color: 'rgba(255,255,255,0.95)', maxWidth: '640px', margin: '0 auto 40px', lineHeight: 1.75, position: 'relative', zIndex: 1 }}>
                 Let's discuss how HodorInfo can revolutionize your business with next-level technology solutions.
               </motion.p>
-              <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap', position: 'relative', zIndex: 1 }}>
+              <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
                 <Link
                   href="/contact"
                   className="shine-btn"
-                  style={{ padding: '16px 40px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 600, fontSize: '15px', textDecoration: 'none', transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: '160px', position: 'relative', overflow: 'hidden' }}
-                  onMouseEnter={(e: any) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.05)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)'; }}
-                  onMouseLeave={(e: any) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
+                  style={{ padding: '18px 48px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 700, fontSize: '16px', textDecoration: 'none', transition: 'all 0.3s ease', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: '180px', position: 'relative', overflow: 'hidden' }}
+                  onMouseEnter={(e: any) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)'; }}
+                  onMouseLeave={(e: any) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
                 >
-                  Schedule a Consultation <ArrowRight size={18} style={{ marginLeft: '10px' }} />
+                  Schedule a Consultation <ArrowRight size={20} style={{ marginLeft: '12px' }} />
                 </Link>
               </motion.div>
             </motion.div>
@@ -505,6 +529,7 @@ export default function Home() {
           @keyframes rotateClockwise { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
           @keyframes rotateCounterClockwise { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(-360deg); } }
           @keyframes shimmerSwipe { 0% { left: -100%; } 100% { left: 150%; } }
+          @keyframes blink { from, to { opacity: 0; } 50% { opacity: 1; } }
           .shine-btn::after {
             content: '';
             position: absolute;

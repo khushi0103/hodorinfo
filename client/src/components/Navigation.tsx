@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Menu, X, ChevronDown, Cpu, Bot, Plane, Shield, BarChart3, Zap, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 // ─── Services mega-menu data ───────────────────────────────────────────────
 const services = [
@@ -56,6 +57,76 @@ const navLinks = [
   { label: 'Blog', href: 'https://blog.hodorinfo.com', external: true },
   { label: 'Contact', href: '/contact' },
 ];
+
+const MorphingCTA = () => {
+  return (
+    <div style={{ width: '160px', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+      <Link href="/contact" className="block">
+        <motion.div
+          animate={{
+            width: ["40px", "40px", "140px", "140px", "40px"],
+            height: ["40px", "52px", "52px", "52px", "40px"],
+            borderRadius: ["50%", "26px", "12px", "12px", "50%"],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            times: [0, 0.125, 0.25, 0.875, 1],
+            ease: "easeInOut",
+          }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          style={{
+            background: 'linear-gradient(135deg, #6367FF 0%, #8494FF 100%)',
+            boxShadow: '0 8px 32px rgba(99, 103, 255, 0.4)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            overflow: 'hidden',
+            position: 'relative',
+          }}
+        >
+          <motion.div
+            animate={{
+              opacity: [0, 0, 1, 1, 0],
+              scale: [0.6, 0.6, 1, 1, 0.6],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              times: [0, 0.18, 0.25, 0.875, 1],
+              ease: "easeOut",
+            }}
+            style={{
+              whiteSpace: 'nowrap',
+              color: '#0a0e27',
+              fontWeight: 700,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              fontSize: '13px',
+            }}
+          >
+            Get Started <ArrowRight size={14} />
+          </motion.div>
+          
+          {/* Shimmer sweep overlay */}
+          <motion.div
+            animate={{ x: ['-200%', '200%'] }}
+            transition={{ duration: 2, repeat: Infinity, repeatDelay: 1, ease: 'linear' }}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
+              pointerEvents: 'none',
+            }}
+          />
+        </motion.div>
+      </Link>
+    </div>
+  );
+};
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -134,11 +205,11 @@ export default function Navigation() {
       <nav
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: '#0a0e27',
-          backdropFilter: 'none',
-          WebkitBackdropFilter: 'none',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.05)', // Added a subtle bottom border for definition
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
+          background: 'rgba(10, 14, 39, 0.4)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderBottom: 'none',
+          boxShadow: '0 4px 30px rgba(0, 0, 0, 0.2)',
           padding: '0',
         }}
       >
@@ -364,33 +435,7 @@ export default function Navigation() {
 
             {/* ── CTA Button ───────────────────────────────────────────── */}
             <div className="hidden md:block">
-              <Link
-                href="/contact"
-                className="relative overflow-hidden flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-[#0a0e27] transition-all duration-300 hover:scale-105 group"
-                style={{
-                  background: 'linear-gradient(135deg, #6367FF 0%, #8494FF 100%)',
-                  boxShadow: '0 8px 24px rgba(99, 103, 255, 0.35)',
-                }}
-                onMouseEnter={(e: any) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow =
-                    '0 12px 32px rgba(99, 103, 255, 0.55)';
-                }}
-                onMouseLeave={(e: any) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow =
-                    '0 8px 24px rgba(99, 103, 255, 0.35)';
-                }}
-              >
-                {/* Shimmer sweep */}
-                <span
-                  className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500"
-                  style={{
-                    background:
-                      'linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)',
-                  }}
-                />
-                Get Started
-                <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-              </Link>
+              <MorphingCTA />
             </div>
 
             {/* ── Mobile Hamburger ─────────────────────────────────────── */}
@@ -436,11 +481,12 @@ export default function Navigation() {
         >
           <div
             style={{
-              background: 'rgba(10, 14, 39, 0.98)',
-              backdropFilter: 'blur(24px)',
-              border: '1px solid rgba(0, 212, 255, 0.1)',
-              borderRadius: '20px',
-              boxShadow: '0 20px 48px rgba(0,0,0,0.6)',
+              background: 'rgba(10, 14, 39, 0.7)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              border: 'none',
+              borderRadius: '24px',
+              boxShadow: '0 20px 48px rgba(0,0,0,0.4)',
               overflow: 'hidden',
             }}
           >
@@ -558,33 +604,6 @@ export default function Navigation() {
                 })}
               </div>
 
-              {/* View all link */}
-              <div style={{ marginTop: '14px', paddingTop: '12px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-                <a
-                  href="/services"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.history.pushState({}, '', '/services');
-                    window.dispatchEvent(new PopStateEvent('popstate'));
-                    setMegaOpen(false);
-                  }}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    fontSize: '13px',
-                    fontWeight: 500,
-                    color: '#00d4ff',
-                    textDecoration: 'none',
-                    transition: 'gap 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.gap = '10px'; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.gap = '6px'; }}
-                >
-                  View all services
-                  <ArrowRight size={13} />
-                </a>
-              </div>
             </div>
           </div>
         </div>
@@ -680,18 +699,9 @@ export default function Navigation() {
             })}
 
             {/* Mobile CTA */}
-            <Link
-              href="/contact"
-              className="mt-3 flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-[#0a0e27] transition-all duration-300 active:scale-95"
-              style={{
-                background: 'linear-gradient(135deg, #6367FF 0%, #8494FF 100%)',
-                boxShadow: '0 0 24px rgba(0, 212, 255, 0.3)',
-              }}
-              onClick={() => setIsOpen(false)}
-            >
-              Get Started
-              <ArrowRight size={14} />
-            </Link>
+            <div className="mt-3 flex justify-center">
+              <MorphingCTA />
+            </div>
           </div>
         </div>
       </nav>

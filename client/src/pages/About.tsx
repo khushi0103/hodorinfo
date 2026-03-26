@@ -127,13 +127,6 @@ function StarField() {
   );
 }
 
-function HorizonGlow() {
-  return (
-    <div style={{ position: 'absolute', top: '0', left: '-10%', right: '-10%', height: '40%', zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: '0', left: '50%', transform: 'translateX(-50%)', width: '160%', height: '100%', background: 'radial-gradient(ellipse at top, rgba(99, 103, 255, 0.15) 0%, rgba(132, 148, 255, 0.05) 40%, transparent 75%)', filter: 'blur(100px)' }} />
-    </div>
-  );
-}
 
 function PulsingBadge({ text }: { text: string }) {
   return (
@@ -252,7 +245,6 @@ export default function About() {
       {/* Hero Section */}
       <section style={{ position: 'relative', overflow: 'hidden', paddingTop: '160px', paddingBottom: '100px', display: 'flex', alignItems: 'center' }}>
         <StarField />
-        <HorizonGlow />
         <ParticleCanvas />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <motion.div
@@ -263,7 +255,7 @@ export default function About() {
             style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}
           >
             <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center' }}><PulsingBadge text="Our Legacy" /></motion.div>
-            <motion.h1 variants={itemVariants} className="premium-gradient-text" style={{ fontSize: 'clamp(40px, 6vw, 72px)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em', margin: '0 auto 24px' }}>
+            <motion.h1 variants={itemVariants} className="premium-gradient-text" style={{ fontSize: 'clamp(28px, 4.2vw, 64px)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em', margin: '0 auto 24px' }}>
               About HodorInfo
             </motion.h1>
             <motion.p variants={itemVariants} style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', margin: '0 auto' }}>
@@ -274,31 +266,43 @@ export default function About() {
       </section>
 
       <section style={{ position: 'relative', zIndex: 1, padding: '100px 0', overflow: 'hidden' }}>
-        <BackgroundGlow color="rgba(0,212,255,0.05)" top="20%" left="-10%" size="600px" />
         <div className="container">
           <div style={{ display: 'flex', gap: '80px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '140px' }}>
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              style={{ flex: '1 1 500px' }}
-            >
-                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 20% 40%, rgba(0,212,255,0.08) 0%, transparent 60%)', pointerEvents: 'none', zIndex: -1 }} />
+            <div style={{ flex: '1 1 500px', position: 'relative' }}>
+              
+              {/* Text content from left */}
+              <motion.div
+                initial={{ opacity: 0, x: -80 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              >
                 <h2 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 700, color: '#ffffff', marginBottom: '24px' }}>Our Mission</h2>
-              <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, marginBottom: '24px' }}>
-                To empower industries globally by delivering transformative digital solutions that leverage advanced technologies, enabling businesses to operate smarter, faster, and more securely in an increasingly digital world.
-              </p>
-              <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, marginBottom: '40px' }}>
-                We don't just build software—we fundamentally reimagine how industries operate by integrating cutting-edge technologies including AI, drones, cybersecurity, data science, and specialized enterprise solutions.
-              </p>
-              <MagneticButton label="Explore Our Services" href="/services" />
-            </motion.div>
+                <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, marginBottom: '24px' }}>
+                  To empower industries globally by delivering transformative digital solutions that leverage advanced technologies, enabling businesses to operate smarter, faster, and more securely in an increasingly digital world.
+                </p>
+                <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, marginBottom: '40px' }}>
+                  We don't just build software—we fundamentally reimagine how industries operate by integrating cutting-edge technologies including AI, drones, cybersecurity, data science, and specialized enterprise solutions.
+                </p>
+              </motion.div>
+
+              {/* Button from right */}
+              <motion.div
+                initial={{ opacity: 0, x: 80 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <MagneticButton label="Explore Our Services" href="/services" />
+              </motion.div>
+            </div>
+
+            {/* Image from right */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2 }}
+              initial={{ opacity: 0, x: 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
               style={{ flex: '1 1 400px', position: 'relative' }}
             >
                 <motion.div
@@ -519,24 +523,35 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section style={{ padding: '120px 0 140px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
-        <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className="container mx-auto px-6" style={{ display: 'flex', justifyContent: 'center' }}>
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            style={{ width: '100%', maxWidth: '1000px', borderRadius: '40px', background: 'linear-gradient(90deg, #6367FF 0%, #8494FF 100%)', padding: '64px 40px', textAlign: 'center', position: 'relative', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(12px)', boxShadow: '0 30px 60px rgba(99, 103, 255, 0.25)' }}
+            style={{ 
+              width: '100%', 
+              maxWidth: '1400px', 
+              borderRadius: '60px', 
+              background: 'linear-gradient(145deg, rgba(99, 103, 255, 0.95) 0%, rgba(132, 148, 255, 0.85) 100%)', 
+              padding: '64px 40px', 
+              textAlign: 'center', 
+              position: 'relative', 
+              overflow: 'hidden', 
+              border: '1px solid rgba(255, 255, 255, 0.2)', 
+              backdropFilter: 'blur(12px)', 
+              boxShadow: '0 40px 80px rgba(99, 103, 255, 0.3)' 
+            }}
           >
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.2) 0%, transparent 60%)', pointerEvents: 'none' }} />
-            <h2 style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 600, color: '#ffffff', lineHeight: 1.25, marginBottom: '24px', position: 'relative', zIndex: 1 }}>
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.3) 0%, transparent 60%)', pointerEvents: 'none' }} />
+            <h2 style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 800, color: '#ffffff', lineHeight: 1.25, marginBottom: '24px', position: 'relative', zIndex: 1, letterSpacing: '-0.02em' }}>
               Ready to Partner with HodorInfo?
             </h2>
-            <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.9)', maxWidth: '520px', margin: '0 auto 40px', lineHeight: 1.75, position: 'relative', zIndex: 1 }}>
+            <p style={{ fontSize: '20px', color: 'rgba(255,255,255,0.95)', maxWidth: '640px', margin: '0 auto 40px', lineHeight: 1.75, position: 'relative', zIndex: 1 }}>
               Let's discuss how we can help transform your industry and drive your business forward.
             </p>
             <Link href="/contact">
-              <a style={{ padding: '18px 48px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 600, fontSize: '16px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
+              <a style={{ padding: '18px 48px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 700, fontSize: '16px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 1, transition: 'all 0.3s ease' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-3px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
                 Get in Touch <ArrowRight size={20} style={{ marginLeft: '12px' }} />
               </a>
             </Link>

@@ -7,7 +7,13 @@ export default function Footer() {
   return (
     <footer className="relative mt-16 px-4 md:px-8">
       {/* Broad & Very Rounded Background with Pink/Purple Glassy Effect */}
-      <div className="bg-gradient-to-br from-[#0a0e27]/90 via-[#1a0b3a]/85 to-[#0a0e27]/90 backdrop-blur-3xl rounded-t-[80px] md:rounded-t-[100px] pt-12 pb-8 px-6 md:px-16 shadow-[0_-30px_80px_rgba(155,93,245,0.2)]">
+      <div 
+        className="backdrop-blur-3xl rounded-t-[80px] md:rounded-t-[100px] pt-12 pb-8 px-6 md:px-16 shadow-[0_-30px_80px_rgba(99,103,255,0.25)] border-t border-white/12 relative overflow-hidden"
+        style={{
+          background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.02) 0%, rgba(10, 14, 39, 0.3) 50%, rgba(10, 14, 39, 0.45) 100%)',
+        }}
+      >
+        <div className="absolute inset-0 bg-white/[0.02] pointer-events-none" />
 
         <div className="max-w-[1500px] mx-auto">
 

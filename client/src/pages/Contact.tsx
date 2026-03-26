@@ -126,13 +126,6 @@ function StarField() {
   );
 }
 
-function HorizonGlow() {
-  return (
-    <div style={{ position: 'absolute', top: '0', left: '-10%', right: '-10%', height: '40%', zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: '0', left: '50%', transform: 'translateX(-50%)', width: '160%', height: '100%', background: 'radial-gradient(ellipse at top, rgba(99, 103, 255, 0.15) 0%, rgba(132, 148, 255, 0.05) 40%, transparent 75%)', filter: 'blur(100px)' }} />
-    </div>
-  );
-}
 
 function BackgroundGlow({ color = 'rgba(0, 212, 255, 0.1)', size = '400px', top, left, right, bottom }: any) {
   return (
@@ -214,7 +207,6 @@ export default function Contact() {
       {/* Hero Section */}
       <section style={{ position: 'relative', overflow: 'hidden', paddingTop: '160px', paddingBottom: '80px', display: 'flex', alignItems: 'center' }}>
         <StarField />
-        <HorizonGlow />
         <ParticleCanvas />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <motion.div
@@ -225,7 +217,7 @@ export default function Contact() {
             style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}
           >
             <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center' }}><PulsingBadge text="Let's Connect" /></motion.div>
-            <motion.h1 variants={itemVariants} className="premium-gradient-text" style={{ fontSize: 'clamp(40px, 6vw, 72px)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em', margin: '0 auto 24px' }}>
+            <motion.h1 variants={itemVariants} className="premium-gradient-text" style={{ fontSize: 'clamp(28px, 4.2vw, 64px)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em', margin: '0 auto 24px' }}>
               Get in Touch
             </motion.h1>
             <motion.p variants={itemVariants} style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', margin: '0 auto' }}>
@@ -401,19 +393,30 @@ export default function Contact() {
 
       {/* Final Section */}
       <section style={{ padding: '100px 0 160px', position: 'relative', overflow: 'hidden' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
+        <div className="container mx-auto px-6" style={{ display: 'flex', justifyContent: 'center' }}>
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            style={{ padding: '80px 40px', borderRadius: '60px', background: 'linear-gradient(90deg, #6367FF 0%, #8494FF 100%)', border: '1px solid rgba(255,255,255,0.1)', backdropFilter: 'blur(12px)', boxShadow: '0 30px 60px rgba(99, 103, 255, 0.25)', position: 'relative', overflow: 'hidden' }}
+            style={{ 
+              width: '100%', 
+              maxWidth: '1400px', 
+              borderRadius: '60px', 
+              background: 'linear-gradient(145deg, rgba(99, 103, 255, 0.95) 0%, rgba(132, 148, 255, 0.85) 100%)', 
+              border: '1px solid rgba(255,255,255,0.2)', 
+              backdropFilter: 'blur(12px)', 
+              boxShadow: '0 40px 80px rgba(99, 103, 255, 0.3)', 
+              position: 'relative', 
+              overflow: 'hidden',
+              padding: '80px 40px'
+            }}
           >
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.2) 0%, transparent 60%)', pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.3) 0%, transparent 60%)', pointerEvents: 'none' }} />
             <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '24px', alignItems: 'center' }}>
               <div style={{ textAlign: 'center' }}>
-                <Sparkles size={48} color="#ffffff" style={{ margin: '0 auto 32px', opacity: 0.6 }} />
-                <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 700, color: '#ffffff', marginBottom: '24px' }}>Let's Start Your Transformation</h2>
-                <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.9)', maxWidth: '640px', margin: '0 auto' }}>Whether you have questions or are ready to begin, our team is here to help you succeed in the digital age.</p>
+                <Sparkles size={48} color="#ffffff" style={{ margin: '0 auto 32px', opacity: 0.8 }} />
+                <h2 style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 800, color: '#ffffff', marginBottom: '24px', letterSpacing: '-0.02em' }}>Let's Start Your Transformation</h2>
+                <p style={{ fontSize: '20px', color: 'rgba(255,255,255,0.95)', maxWidth: '720px', margin: '0 auto', lineHeight: 1.6 }}>Whether you have questions or are ready to begin, our team is here to help you succeed in the digital age.</p>
               </div>
             </div>
           </motion.div>
