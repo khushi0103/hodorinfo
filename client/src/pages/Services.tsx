@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'wouter';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import Navigation from '@/components/layout/Navigation';
+import Footer from '@/components/layout/Footer';
 import { ArrowRight, Sparkles, Zap, Brain, Plane, Shield, BarChart3, Cog, ChevronRight } from 'lucide-react';
 import { motion, useInView, Variants } from 'framer-motion';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';

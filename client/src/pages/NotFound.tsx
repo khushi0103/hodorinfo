@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import Navigation from '@/components/layout/Navigation';
+import Footer from '@/components/layout/Footer';
 import { ArrowRight } from 'lucide-react';
 
 export default function NotFound() {

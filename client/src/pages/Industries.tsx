@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'wouter';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import Navigation from '@/components/layout/Navigation';
+import Footer from '@/components/layout/Footer';
 import { ArrowRight, Truck, Leaf, Heart, Factory, ShoppingCart, Zap, CreditCard, Shield, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
@@ -487,9 +487,7 @@ export default function Industries() {
                   initial={{ opacity: 0, y: 80, rotateY: 25, scale: 0.9 }}
                   whileInView={{ opacity: 1, y: 0, rotateY: 0, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.15, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                   animate={{ y: [0, -10, 0] }} // Gentle constant floating effect
-                  // @ts-ignore
                   transition={{
                     y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.5 },
                     // We need to keep the initial transition for entrance

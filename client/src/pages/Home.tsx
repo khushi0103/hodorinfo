@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'wouter';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import Navigation from '@/components/layout/Navigation';
+import Footer from '@/components/layout/Footer';
 import StaticFrameContentLoop from '@/components/ui/StaticFrameContentLoop'; // Main Maydiv Component
 import { motion, Variants } from 'framer-motion';
 import { ArrowRight, Zap, Brain, Plane, Shield, BarChart3, Cog, ChevronRight, Sparkles } from 'lucide-react';
