@@ -143,7 +143,7 @@ function MagneticButton({ href, label }: { href: string; label: string }) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <Link href={href}>
-      <a onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '14px 32px', background: 'transparent', borderRadius: '100px', position: 'relative', zIndex: 10, cursor: 'pointer', textDecoration: 'none', fontWeight: 600, fontSize: '16px', transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)', transform: isHovered ? 'translateY(-2px)' : 'none' }}>
+      <div onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '14px 32px', background: 'transparent', borderRadius: '100px', position: 'relative', zIndex: 10, cursor: 'pointer', textDecoration: 'none', fontWeight: 600, fontSize: '16px', transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)', transform: isHovered ? 'translateY(-2px)' : 'none' }}>
         <div style={{ position: 'absolute', inset: 0, borderRadius: '100px', border: '1.5px solid rgba(255,255,255,0.8)', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s ease' }} />
         <div style={{ position: 'absolute', inset: 0, borderRadius: '100px', padding: '1.5px', background: 'linear-gradient(90deg, #6367FF, #8494FF)', WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', maskComposite: 'exclude', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }} />
         <div style={{ position: 'absolute', inset: -2, borderRadius: '100px', background: 'linear-gradient(90deg, #6367FF, #8494FF)', opacity: isHovered ? 0.25 : 0, filter: 'blur(10px)', transition: 'opacity 0.3s ease', zIndex: -1 }} />
@@ -151,7 +151,7 @@ function MagneticButton({ href, label }: { href: string; label: string }) {
           <span style={{ color: '#ffffff', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s ease' }}>{label}</span>
           <span style={{ position: 'absolute', left: 0, top: 0, whiteSpace: 'nowrap', background: 'linear-gradient(90deg, #6367FF, #8494FF)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }}>{label}</span>
         </span>
-      </a>
+      </div>
     </Link>
   );
 }
@@ -317,12 +317,93 @@ export default function Industries() {
         .shine-btn:hover::after { left: 150%; }
         .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         .glass-card:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.1); transform: translateY(-5px); }
+
+        @media (max-width: 1024px) {
+          .industries-hero-section { padding-top: 80px !important; padding-bottom: 40px !important; }
+          .industries-hero-h1 { margin-bottom: 12px !important; }
+          .industries-hero-para {
+            font-size: clamp(14px, 4.2vw, 16px) !important;
+            text-align: justify !important;
+            max-width: 100% !important;
+            line-height: 1.6 !important;
+            text-justify: inter-word;
+          }
+          
+          .industry-section { 
+            flex-direction: column !important; 
+            gap: 40px !important; 
+            margin-bottom: 80px !important; 
+            text-align: center !important; 
+          }
+          .industry-content-col { 
+            flex: 1 1 100% !important; 
+            order: 1 !important; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          .industry-image-col { 
+            flex: 1 1 100% !important; 
+            order: 2 !important; 
+            max-width: 480px !important;
+          }
+          .solutions-grid-box {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 12px !important;
+            text-align: left !important;
+          }
+          .solution-item {
+            padding: 8px 12px !important;
+            font-size: 11px !important;
+          }
+          .industry-desc {
+            font-size: clamp(14px, 4.2vw, 16px) !important;
+            line-height: 1.6 !important;
+            margin-bottom: 32px !important;
+            text-align: justify !important;
+            text-justify: inter-word;
+          }
+
+          .cta-card p { font-size: 0.9rem !important; margin-bottom: 32px !important; }
+
+          .choose-hero-para {
+            font-size: clamp(14px, 4.2vw, 16px) !important;
+            text-align: justify !important;
+            text-justify: inter-word;
+            margin-bottom: 40px !important;
+          }
+          .choose-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+            padding: 0 !important;
+          }
+          .choose-card-box {
+            padding: 20px 14px !important;
+            min-height: auto !important;
+          }
+          .choose-card-box div[style*="fontSize: '40px'"] { 
+            font-size: 24px !important; 
+            margin-bottom: 12px !important; 
+          }
+          .choose-card-box h3 { 
+            font-size: 12px !important; 
+            line-height: 1.3 !important; 
+            margin-bottom: 8px !important; 
+            letter-spacing: 0 !important;
+          }
+          .choose-card-box p { 
+            font-size: 10.5px !important; 
+            line-height: 1.4 !important; 
+            display: block !important;
+            overflow: visible !important;
+          }
+        }
       `}</style>
 
       <Navigation />
 
       {/* Hero Section */}
-      <section style={{ position: 'relative', overflow: 'hidden', paddingTop: '160px', paddingBottom: '120px', display: 'flex', alignItems: 'center' }}>
+      <section className="industries-hero-section" style={{ position: 'relative', overflow: 'hidden', paddingTop: '160px', paddingBottom: '120px', display: 'flex', alignItems: 'center' }}>
         <StarField />
         <ParticleCanvas />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -334,10 +415,10 @@ export default function Industries() {
             style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}
           >
             <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center' }}><PulsingBadge text="Global Impact" /></motion.div>
-            <motion.h1 variants={itemVariants} className="premium-gradient-text" style={{ fontSize: 'clamp(28px, 4.2vw, 64px)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em', margin: '0 auto 24px' }}>
+            <motion.h1 className="premium-gradient-text industries-hero-h1" variants={itemVariants} style={{ fontSize: 'clamp(28px, 4.2vw, 64px)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em', margin: '0 auto 24px' }}>
               Industries We Transform
             </motion.h1>
-            <motion.p variants={itemVariants} style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', margin: '0 auto' }}>
+            <motion.p className="industries-hero-para" variants={itemVariants} style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', margin: '0 auto' }}>
               From logistics to government, we bring digital innovation and next-level technology to every sector. We don't just build technology—we transform industries.
             </motion.p>
           </motion.div>
@@ -353,8 +434,9 @@ export default function Industries() {
               <motion.div key={industry.id}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.25 }}
+                viewport={{ once: false, amount: 0.2 }}
                 variants={containerVariants}
+                className="industry-section"
                 style={{
                   display: 'flex',
                   flexDirection: index % 2 === 1 ? 'row-reverse' : 'row',
@@ -365,7 +447,7 @@ export default function Industries() {
                 }}>
 
                 {/* Content Side */}
-                <motion.div variants={containerVariants} style={{ flex: '1 1 500px' }}>
+                <motion.div className="industry-content-col" variants={containerVariants} style={{ flex: '1 1 500px' }}>
                   <motion.div variants={itemVariants} style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
                     <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: `${industry.color}15`, border: `1px solid ${industry.color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <Icon size={24} color={industry.color} />
@@ -376,15 +458,15 @@ export default function Industries() {
                   <motion.h2 variants={itemVariants} style={{ fontSize: 'clamp(32px, 4vw, 44px)', fontWeight: 700, color: '#ffffff', marginBottom: '20px', letterSpacing: '-0.01em' }}>
                     {industry.title}
                   </motion.h2>
-                  <motion.p variants={itemVariants} style={{ fontSize: '18px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, marginBottom: '40px' }}>
+                  <motion.p className="industry-desc" variants={itemVariants} style={{ fontSize: '18px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, marginBottom: '40px' }}>
                     {industry.description}
                   </motion.p>
 
                   <motion.div variants={itemVariants} style={{ marginBottom: '48px' }}>
                     <h4 style={{ fontSize: '16px', fontWeight: 700, color: industry.color, marginBottom: '20px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Tailored Solutions</h4>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px' }}>
+                    <div className="solutions-grid-box" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px' }}>
                       {industry.solutions.map((solution, idx) => (
-                        <motion.div variants={itemVariants} key={idx} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 16px', borderRadius: '12px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.85)', fontSize: '15px' }}>
+                        <motion.div className="solution-item" variants={itemVariants} key={idx} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 16px', borderRadius: '12px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.85)', fontSize: '15px' }}>
                           <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: industry.color, flexShrink: 0 }} />
                           <span>{solution}</span>
                         </motion.div>
@@ -399,6 +481,7 @@ export default function Industries() {
 
                 {/* Visual Side */}
                 <motion.div
+                  className="industry-image-col"
                   variants={imageVariants}
                   style={{ flex: '1 1 400px', display: 'flex', justifyContent: 'center' }}
                 >
@@ -459,11 +542,11 @@ export default function Industries() {
               transition={{ duration: 0.8 }}
             >
               <h2 style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 800, color: '#ffffff', marginBottom: '24px', letterSpacing: '-0.02em' }}>Why Choose HodorInfo?</h2>
-              <p style={{ fontSize: '20px', color: 'rgba(255,255,255,0.6)', maxWidth: '640px', margin: '0 auto', lineHeight: 1.6 }}>Combining deep industry expertise with cutting-edge technology integration to redefine possibilities.</p>
+              <p className="choose-hero-para" style={{ fontSize: '20px', color: 'rgba(255,255,255,0.6)', maxWidth: '640px', margin: '0 auto', lineHeight: 1.6 }}>Combining deep industry expertise with cutting-edge technology integration to redefine possibilities.</p>
             </motion.div>
           </div>
 
-          <div style={{
+          <div className="choose-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
             gap: '40px',
@@ -494,7 +577,7 @@ export default function Industries() {
                     default: { delay: idx * 0.15, duration: 1, ease: [0.16, 1, 0.3, 1] }
                   }}
                   whileHover={{ rotateX: 35, y: -20, scale: 1.02, transition: { duration: 0.4 } }}
-                  className="glass-card"
+                  className="glass-card choose-card-box"
                   style={{
                     padding: '48px 40px',
                     borderRadius: '32px',
@@ -536,12 +619,13 @@ export default function Industries() {
         </div>
       </section>
 
-      <section style={{ padding: '120px 0 160px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+      <section className="cta-section" style={{ padding: '120px 0 160px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
         <div className="container mx-auto px-6" style={{ display: 'flex', justifyContent: 'center' }}>
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
+            className="cta-card"
             style={{ 
               width: '100%', 
               maxWidth: '1400px', 
@@ -570,13 +654,13 @@ export default function Industries() {
             </p>
             <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
               <Link href="/contact">
-                <a className="shine-btn"
-                  style={{ padding: '18px 48px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 700, fontSize: '16px', textDecoration: 'none', transition: 'all 0.3s ease', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: '180px', position: 'relative', overflow: 'hidden' }}
+                <div className="shine-btn"
+                  style={{ padding: '18px 48px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 700, fontSize: '16px', textDecoration: 'none', transition: 'all 0.3s ease', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: '180px', position: 'relative', overflow: 'hidden', cursor: 'pointer' }}
                   onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)'; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
                 >
                   Get Started Today <ArrowRight size={20} style={{ marginLeft: '12px' }} />
-                </a>
+                </div>
               </Link>
             </motion.div>
           </motion.div>

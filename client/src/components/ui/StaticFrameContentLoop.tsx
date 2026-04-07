@@ -140,15 +140,18 @@ const StaticFrameContentLoop = ({ data }: { data: ServiceData[] }) => {
           position: absolute;
           width: 330px;
           height: 480px;
-          background: linear-gradient(165deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
-          border: 1px solid rgba(255, 255, 255, 0.06);
+          background: linear-gradient(165deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           border-radius: 35px;
           backdrop-filter: blur(25px);
           opacity: var(--op);
           z-index: var(--zi);
-          box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
           cursor: pointer;
           transform-style: preserve-3d;
+          overflow: hidden;
+          isolation: isolate;
+          -webkit-mask-image: -webkit-radial-gradient(white, black);
+          mask-image: -webkit-radial-gradient(white, black);
         }
 
         @media (max-width: 768px) {
@@ -162,10 +165,10 @@ const StaticFrameContentLoop = ({ data }: { data: ServiceData[] }) => {
           .static-slot-frame {
             width: 150px;
             height: 220px;
-            border-radius: 14px;
+            border-radius: 20px;
           }
           .static-slot-frame::before {
-            border-radius: 14px;
+            border-radius: 20px !important;
           }
           .content-slide-layer {
             padding: 10px !important;
@@ -181,11 +184,11 @@ const StaticFrameContentLoop = ({ data }: { data: ServiceData[] }) => {
           .explore-link { font-size: 0.5rem !important; margin-top: 4px !important; }
         }
 
-        /* ANIMATED GRADIENT BORDER AURA */
+        /* ANIMATED GRADIENT BORDER AURA - NOW INTERNAL TO AVOID OVERFLOW */
         .static-slot-frame::before {
           content: "";
           position: absolute;
-          inset: -1.5px;
+          inset: 0;
           padding: 1.5px;
           border-radius: 35px;
           background: linear-gradient(90deg, #ffffff, #6367FF, #8494FF, #6367FF, #ffffff);

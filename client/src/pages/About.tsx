@@ -168,7 +168,7 @@ function MagneticButton({ href, label }: { href: string; label: string }) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <Link href={href}>
-      <a onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '14px 32px', background: 'transparent', borderRadius: '100px', position: 'relative', zIndex: 10, cursor: 'pointer', textDecoration: 'none', fontWeight: 600, fontSize: '16px', transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)', transform: isHovered ? 'translateY(-2px)' : 'none' }}>
+      <div onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '14px 32px', background: 'transparent', borderRadius: '100px', position: 'relative', zIndex: 10, cursor: 'pointer', textDecoration: 'none', fontWeight: 600, fontSize: '16px', transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)', transform: isHovered ? 'translateY(-2px)' : 'none' }}>
         <div style={{ position: 'absolute', inset: 0, borderRadius: '100px', border: '1.5px solid rgba(255,255,255,0.8)', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s ease' }} />
         <div style={{ position: 'absolute', inset: 0, borderRadius: '100px', padding: '1.5px', background: 'linear-gradient(90deg, #6367FF, #8494FF)', WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', maskComposite: 'exclude', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }} />
         <div style={{ position: 'absolute', inset: -2, borderRadius: '100px', background: 'linear-gradient(90deg, #6367FF, #8494FF)', opacity: isHovered ? 0.25 : 0, filter: 'blur(10px)', transition: 'opacity 0.3s ease', zIndex: -1 }} />
@@ -176,7 +176,7 @@ function MagneticButton({ href, label }: { href: string; label: string }) {
           <span style={{ color: '#ffffff', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s ease' }}>{label}</span>
           <span style={{ position: 'absolute', left: 0, top: 0, whiteSpace: 'nowrap', background: 'linear-gradient(90deg, #6367FF, #8494FF)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s ease' }}>{label}</span>
         </span>
-      </a>
+      </div>
     </Link>
   );
 }
@@ -238,12 +238,62 @@ export default function About() {
         @keyframes pulse-ping { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(2.5); opacity: 0; } }
         .premium-gradient-text { background: linear-gradient(90deg, #ffffff, #6367FF, #8494FF, #6367FF, #ffffff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; animation: animatedTextGradient 8s linear infinite; display: block; width: fit-content; }
         .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        @media (max-width: 1024px) {
+          .about-hero-section { padding-top: 80px !important; padding-bottom: 40px !important; }
+          .about-hero-h1 { margin-bottom: 12px !important; }
+          .about-hero-para, .about-desc {
+            font-size: clamp(14px, 4.2vw, 16px) !important;
+            text-align: justify !important;
+            max-width: 100% !important;
+            line-height: 1.6 !important;
+            text-justify: inter-word;
+          }
+          
+          .grid-2-col {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+          .why-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 16px !important;
+          }
+          .nano-card {
+            padding: 32px 24px !important;
+            display: block !important;
+          }
+          .why-grid .nano-card { padding: 24px 14px !important; text-align: center !important; }
+          .why-grid .nano-card h3 { font-size: 13px !important; margin-bottom: 8px !important; text-align: center !important; }
+          .why-grid .nano-card p { font-size: 10.5px !important; line-height: 1.4 !important; text-align: center !important; }
+
+          .nano-card-icon { display: none !important; }
+          .nano-card h3 { 
+            font-size: 18px !important; 
+            line-height: 1.3 !important; 
+            margin-bottom: 12px !important;
+            width: 100%;
+            text-align: left !important;
+          }
+          .nano-card p { 
+            font-size: clamp(14px, 4.2vw, 15px) !important; 
+            line-height: 1.6 !important; 
+            color: rgba(255,255,255,0.7) !important;
+            width: 100%;
+            text-align: justify !important;
+            text-justify: inter-word;
+          }
+
+          .cta-section { padding: 40px 0 80px !important; }
+          .cta-card { border-radius: 30px !important; padding: 40px 24px !important; }
+          .cta-card h2 { font-size: 1.7rem !important; margin-bottom: 20px !important; }
+          .cta-card p { font-size: 0.9rem !important; margin-bottom: 32px !important; }
+        }
       `}</style>
 
       <Navigation />
 
       {/* Hero Section */}
-      <section style={{ position: 'relative', overflow: 'hidden', paddingTop: '160px', paddingBottom: '100px', display: 'flex', alignItems: 'center' }}>
+      <section className="about-hero-section" style={{ position: 'relative', overflow: 'hidden', paddingTop: '160px', paddingBottom: '100px', display: 'flex', alignItems: 'center' }}>
         <StarField />
         <ParticleCanvas />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -255,10 +305,10 @@ export default function About() {
             style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}
           >
             <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center' }}><PulsingBadge text="Our Legacy" /></motion.div>
-            <motion.h1 variants={itemVariants} className="premium-gradient-text" style={{ fontSize: 'clamp(28px, 4.2vw, 64px)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em', margin: '0 auto 24px' }}>
+            <motion.h1 className="premium-gradient-text about-hero-h1" variants={itemVariants} style={{ fontSize: 'clamp(28px, 4.2vw, 64px)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em', margin: '0 auto 24px' }}>
               About HodorInfo
             </motion.h1>
-            <motion.p variants={itemVariants} style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', margin: '0 auto' }}>
+            <motion.p className="about-hero-para" variants={itemVariants} style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', margin: '0 auto' }}>
               Transforming industries through next-level technology and digital innovation. We engineer solutions that redefine the global industrial landscape.
             </motion.p>
           </motion.div>
@@ -269,7 +319,7 @@ export default function About() {
         <div className="container">
           <div style={{ display: 'flex', gap: '80px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '140px' }}>
             <div style={{ flex: '1 1 500px', position: 'relative' }}>
-              
+
               {/* Text content from left */}
               <motion.div
                 initial={{ opacity: 0, x: -80 }}
@@ -278,10 +328,10 @@ export default function About() {
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 <h2 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 700, color: '#ffffff', marginBottom: '24px' }}>Our Mission</h2>
-                <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, marginBottom: '24px' }}>
+                <p className="about-desc" style={{ fontSize: '18px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, marginBottom: '24px' }}>
                   To empower industries globally by delivering transformative digital solutions that leverage advanced technologies, enabling businesses to operate smarter, faster, and more securely in an increasingly digital world.
                 </p>
-                <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, marginBottom: '40px' }}>
+                <p className="about-desc" style={{ fontSize: '18px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, marginBottom: '40px' }}>
                   We don't just build software—we fundamentally reimagine how industries operate by integrating cutting-edge technologies including AI, drones, cybersecurity, data science, and specialized enterprise solutions.
                 </p>
               </motion.div>
@@ -305,19 +355,19 @@ export default function About() {
               transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
               style={{ flex: '1 1 400px', position: 'relative' }}
             >
-                <motion.div
-                  style={{ borderRadius: '32px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.1)', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)', transformStyle: 'preserve-3d', background: 'rgba(255,255,255,0.02)' }}
-                  whileHover={{ rotateY: -15, rotateX: 10, scale: 1.02 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                >
-                  <DotLottieReact
-                    src="https://lottie.host/146b25fc-403b-4799-8fc1-50d18f7be59c/hbQqfh2JNb.lottie"
-                    loop
-                    autoplay
-                    style={{ width: '100%', height: 'auto' }}
-                  />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,14,39,0.3), transparent)', pointerEvents: 'none' }}></div>
-                </motion.div>
+              <motion.div
+                style={{ borderRadius: '32px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.1)', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)', transformStyle: 'preserve-3d', background: 'rgba(255,255,255,0.02)' }}
+                whileHover={{ rotateY: -15, rotateX: 10, scale: 1.02 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              >
+                <DotLottieReact
+                  src="https://lottie.host/146b25fc-403b-4799-8fc1-50d18f7be59c/hbQqfh2JNb.lottie"
+                  loop
+                  autoplay
+                  style={{ width: '100%', height: 'auto' }}
+                />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,14,39,0.3), transparent)', pointerEvents: 'none' }}></div>
+              </motion.div>
             </motion.div>
           </div>
 
@@ -334,7 +384,7 @@ export default function About() {
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(0,212,255,0.4), transparent)' }} />
             <h2 style={{ fontSize: 'clamp(28px, 5vw, 48px)', fontWeight: 800, color: '#ffffff', marginBottom: '80px', textAlign: 'center', letterSpacing: '-0.02em' }}>Our Core Competencies</h2>
 
-            <div style={{
+            <div className="grid-2-col" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
               gap: '48px',
@@ -364,7 +414,7 @@ export default function About() {
                       default: { delay: idx * 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }
                     }}
                     whileHover={{ rotateX: 35, y: -25, scale: 1.05 }}
-                    className="glass-card"
+                    className="glass-card nano-card"
                     style={{
                       padding: '56px 40px',
                       borderRadius: '35px',
@@ -378,8 +428,7 @@ export default function About() {
                       boxShadow: '0 30px 60px -12px rgba(0, 0, 0, 0.5)'
                     }}
                   >
-                    <motion.div style={{ transformStyle: 'preserve-3d' }} whileHover={{ translateZ: 100, rotateX: -35 }}>
-                      <div style={{ position: 'absolute', top: '-10px', left: '50%', transform: 'translateX(-50%) translateZ(-1px)', width: '60px', height: '60px', background: 'rgba(0,212,255,0.2)', filter: 'blur(30px)', opacity: 0, transition: 'opacity 0.4s' }} className="node-glow" />
+                    <motion.div style={{ transformStyle: 'preserve-3d' }} whileHover={{ translateZ: 100, rotateX: -15 }}>
                       <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff', marginBottom: '20px', letterSpacing: '-0.01em' }}>{competency.title}</h3>
                       <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.75 }}>{competency.description}</p>
                     </motion.div>
@@ -459,7 +508,7 @@ export default function About() {
         <BackgroundGlow color="rgba(176, 38, 255, 0.1)" bottom="10%" right="5%" size="500px" />
         <div className="container">
           <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 700, color: '#ffffff', marginBottom: '80px', textAlign: 'center' }}>Why Choose HodorInfo?</h2>
-          <div style={{
+          <div className="why-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
             gap: '40px',
@@ -504,11 +553,10 @@ export default function About() {
                     default: { delay: idx * 0.12, duration: 1, ease: [0.16, 1, 0.3, 1] }
                   }}
                   whileHover={{ rotateX: 35, y: -20, scale: 1.02 }}
-                  className="glass-card"
+                  className="glass-card nano-card"
                   style={{ padding: '48px 40px', borderRadius: '32px', transformStyle: 'preserve-3d', cursor: 'pointer', textAlign: 'center', width: '100%', maxWidth: '380px' }}
                 >
-                  <motion.div style={{ transformStyle: 'preserve-3d' }} whileHover={{ translateZ: 80, rotateX: -35 }}>
-                    <div style={{ fontSize: '40px', marginBottom: '24px', opacity: 0.8 }}><Sparkles size={32} color="#6367FF" /></div>
+                  <motion.div style={{ transformStyle: 'preserve-3d' }} whileHover={{ translateZ: 80, rotateX: -15 }}>
                     <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff', marginBottom: '18px' }}>{item.title}</h3>
                     <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.7 }}>{item.description}</p>
                   </motion.div>
@@ -519,24 +567,25 @@ export default function About() {
         </div>
       </section>
 
-      <section style={{ padding: '120px 0 140px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+      <section className="cta-section" style={{ padding: '120px 0 140px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
         <div className="container mx-auto px-6" style={{ display: 'flex', justifyContent: 'center' }}>
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            style={{ 
-              width: '100%', 
-              maxWidth: '1400px', 
-              borderRadius: '60px', 
-              background: 'linear-gradient(145deg, rgba(99, 103, 255, 0.95) 0%, rgba(132, 148, 255, 0.85) 100%)', 
-              padding: '64px 40px', 
-              textAlign: 'center', 
-              position: 'relative', 
-              overflow: 'hidden', 
-              border: '1px solid rgba(255, 255, 255, 0.2)', 
-              backdropFilter: 'blur(12px)', 
-              boxShadow: '0 40px 80px rgba(99, 103, 255, 0.3)' 
+            className="cta-card"
+            style={{
+              width: '100%',
+              maxWidth: '1400px',
+              borderRadius: '60px',
+              background: 'linear-gradient(145deg, rgba(99, 103, 255, 0.95) 0%, rgba(132, 148, 255, 0.85) 100%)',
+              padding: '64px 40px',
+              textAlign: 'center',
+              position: 'relative',
+              overflow: 'hidden',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              backdropFilter: 'blur(12px)',
+              boxShadow: '0 40px 80px rgba(99, 103, 255, 0.3)'
             }}
           >
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.3) 0%, transparent 60%)', pointerEvents: 'none' }} />
@@ -547,9 +596,9 @@ export default function About() {
               Let's discuss how we can help transform your industry and drive your business forward.
             </p>
             <Link href="/contact">
-              <a style={{ padding: '18px 48px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 700, fontSize: '16px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 1, transition: 'all 0.3s ease' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-3px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
+              <div style={{ padding: '18px 48px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 700, fontSize: '16px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 1, transition: 'all 0.3s ease', cursor: 'pointer' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-3px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
                 Get in Touch <ArrowRight size={20} style={{ marginLeft: '12px' }} />
-              </a>
+              </div>
             </Link>
           </motion.div>
         </div>

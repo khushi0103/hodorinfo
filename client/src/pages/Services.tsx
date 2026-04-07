@@ -349,12 +349,68 @@ export default function Services() {
         .premium-gradient-text { background: linear-gradient(90deg, #ffffff, #6367FF, #8494FF, #6367FF, #ffffff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; animation: animatedTextGradient 8s linear infinite; display: block; width: fit-content; }
         .shine-btn::after { content: ''; position: absolute; top: -100%; left: -100%; width: 50%; height: 300%; background: rgba(255, 255, 255, 0.25); transform: rotate(35deg); transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; }
         .shine-btn:hover::after { left: 150%; }
-      `}</style>
 
+        @media (max-width: 1024px) {
+          .service-section { 
+            flex-direction: column !important; 
+            gap: 40px !important; 
+            margin-bottom: 80px !important; 
+            text-align: center !important; 
+          }
+          .service-content-col { 
+            flex: 1 1 100% !important; 
+            order: 1 !important; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          .service-image-col { 
+            flex: 1 1 100% !important; 
+            order: 2 !important; 
+            max-width: 480px !important;
+          }
+          .service-desc {
+            font-size: clamp(14px, 4.2vw, 16px) !important;
+            line-height: 1.6 !important;
+            margin-bottom: 32px !important;
+            text-align: justify !important;
+            text-justify: inter-word;
+          }
+          .features-list-row {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 16px !important;
+            text-align: left !important;
+            width: 100% !important;
+          }
+          .features-list-row h4 { font-size: 11px !important; margin-bottom: 12px !important; }
+          .features-list-row li { font-size: 10px !important; gap: 6px !important; margin-bottom: 8px !important; }
+          .features-list-row li div { width: 4px !important; height: 4px !important; margin-top: 5px !important; }
+          .services-hero-para {
+            font-size: clamp(14px, 4.2vw, 16px) !important;
+            text-align: justify !important;
+            max-width: 100% !important;
+            line-height: 1.6 !important;
+            text-justify: inter-word;
+          }
+          .services-hero-section {
+            padding-top: 80px !important;
+            padding-bottom: 40px !important;
+          }
+          .services-hero-h1 {
+            margin-bottom: 12px !important;
+          }
+          
+          .cta-section { padding: 40px 0 80px !important; }
+          .cta-card { border-radius: 30px !important; padding: 40px 24px !important; }
+          .cta-card h2 { font-size: 1.7rem !important; margin-bottom: 20px !important; }
+          .cta-card p { font-size: 0.9rem !important; margin-bottom: 32px !important; }
+        }
+      `}</style>
+ domestic
       <Navigation />
 
       {/* Hero Section */}
-      <section style={{ position: 'relative', overflow: 'hidden', paddingTop: '160px', paddingBottom: '100px', display: 'flex', alignItems: 'center' }}>
+      <section className="services-hero-section" style={{ position: 'relative', overflow: 'hidden', paddingTop: '160px', paddingBottom: '100px', display: 'flex', alignItems: 'center' }}>
         <StarField />
         <ParticleCanvas />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -366,10 +422,10 @@ export default function Services() {
             style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}
           >
             <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center' }}><PulsingBadge text="Enterprise Solutions" /></motion.div>
-            <motion.h1 variants={itemVariants} className="premium-gradient-text" style={{ fontSize: 'clamp(28px, 4.2vw, 64px)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em', margin: '0 auto 24px' }}>
+            <motion.h1 className="premium-gradient-text services-hero-h1" variants={itemVariants} style={{ fontSize: 'clamp(28px, 4.2vw, 64px)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em', margin: '0 auto 24px' }}>
               Our Services
             </motion.h1>
-            <motion.p variants={itemVariants} style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', margin: '0 auto' }}>
+            <motion.p className="services-hero-para" variants={itemVariants} style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', margin: '0 auto' }}>
               Six interconnected technology pillars enabling industry transformation across all sectors. We engineer the future with precision and innovation.
             </motion.p>
           </motion.div>
@@ -388,8 +444,9 @@ export default function Services() {
                 id={`service-${service.id}`}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.25 }}
+                viewport={{ once: false, amount: 0.2 }}
                 variants={containerVariants}
+                className="service-section"
                 style={{
                   display: 'flex',
                   flexDirection: index % 2 === 1 ? 'row-reverse' : 'row',
@@ -401,7 +458,7 @@ export default function Services() {
               >
 
                 {/* Content Side */}
-                <motion.div variants={containerVariants} style={{ flex: '1 1 500px' }}>
+                <motion.div className="service-content-col" variants={containerVariants} style={{ flex: '1 1 500px' }}>
                   <motion.div variants={itemVariants} style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
                     <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: `${service.color}15`, border: `1px solid ${service.color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <Icon size={24} color={service.color} />
@@ -412,11 +469,11 @@ export default function Services() {
                   <motion.h2 variants={itemVariants} style={{ fontSize: 'clamp(32px, 4vw, 44px)', fontWeight: 700, color: '#ffffff', marginBottom: '20px', letterSpacing: '-0.01em' }}>
                     {service.title}
                   </motion.h2>
-                  <motion.p variants={itemVariants} style={{ fontSize: '18px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, marginBottom: '40px' }}>
+                  <motion.p className="service-desc" variants={itemVariants} style={{ fontSize: '18px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, marginBottom: '40px' }}>
                     {service.description}
                   </motion.p>
 
-                  <motion.div variants={itemVariants} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px', marginBottom: '48px' }}>
+                  <motion.div className="features-list-row" variants={itemVariants} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px', marginBottom: '48px' }}>
                     <motion.div variants={itemVariants}>
                       <h4 style={{ fontSize: '16px', fontWeight: 700, color: service.color, marginBottom: '20px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Key Features</h4>
                       <ul style={{ listStyle: 'none', padding: 0 }}>
@@ -448,6 +505,7 @@ export default function Services() {
 
                 {/* Image Side - Premium Glassmorphism Frame with Slide-in animation */}
                 <motion.div
+                  className="service-image-col"
                   variants={imageVariants}
                   style={{ flex: '1 1 400px', display: 'flex', justifyContent: 'center' }}
                 >
@@ -492,24 +550,25 @@ export default function Services() {
         </div>
       </section>
 
-      <section style={{ padding: '100px 0 160px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+      <section className="cta-section" style={{ padding: '100px 0 160px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
         <div className="container mx-auto px-6" style={{ display: 'flex', justifyContent: 'center' }}>
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            style={{ 
-              width: '100%', 
-              maxWidth: '1400px', 
-              borderRadius: '60px', 
-              background: 'linear-gradient(145deg, rgba(99, 103, 255, 0.95) 0%, rgba(132, 148, 255, 0.85) 100%)', 
-              padding: '64px 40px', 
-              textAlign: 'center', 
-              position: 'relative', 
-              overflow: 'hidden', 
-              boxShadow: '0 40px 80px rgba(99, 103, 255, 0.3)', 
-              border: '1px solid rgba(255,255,255,0.2)', 
-              backdropFilter: 'blur(12px)' 
+            className="cta-card"
+            style={{
+              width: '100%',
+              maxWidth: '1400px',
+              borderRadius: '60px',
+              background: 'linear-gradient(145deg, rgba(99, 103, 255, 0.95) 0%, rgba(132, 148, 255, 0.85) 100%)',
+              padding: '64px 40px',
+              textAlign: 'center',
+              position: 'relative',
+              overflow: 'hidden',
+              boxShadow: '0 40px 80px rgba(99, 103, 255, 0.3)',
+              border: '1px solid rgba(255,255,255,0.2)',
+              backdropFilter: 'blur(12px)'
             }}
           >
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.3) 0%, transparent 60%)', pointerEvents: 'none' }} />

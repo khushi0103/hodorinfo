@@ -24,14 +24,14 @@ export default function NotFound() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/">
-              <a className="px-8 py-3 bg-gradient-to-r from-slate-blue to-cyan-accent text-off-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
+              <div className="px-8 py-3 bg-gradient-to-r from-slate-blue to-cyan-accent text-off-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 cursor-pointer">
                 Go Home <ArrowRight size={20} />
-              </a>
+              </div>
             </Link>
             <Link href="/services">
-              <a className="px-8 py-3 border-2 border-slate-blue text-slate-blue font-semibold rounded-lg hover:bg-slate-blue/10 transition-colors flex items-center justify-center gap-2">
+              <div className="px-8 py-3 border-2 border-slate-blue text-slate-blue font-semibold rounded-lg hover:bg-slate-blue/10 transition-colors flex items-center justify-center gap-2 cursor-pointer">
                 Explore Services <ArrowRight size={20} />
-              </a>
+              </div>
             </Link>
           </div>
         </div>

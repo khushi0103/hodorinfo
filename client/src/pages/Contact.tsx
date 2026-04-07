@@ -200,12 +200,31 @@ export default function Contact() {
         .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         .input-premium { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: #ffffff; padding: 14px 18px; transition: all 0.3s ease; }
         .input-premium:focus { border-color: #6367FF; background: rgba(99, 103, 255, 0.05); outline: none; box-shadow: 0 0 20px rgba(99, 103, 255, 0.1); }
+
+        @media (max-width: 1024px) {
+          .contact-hero-section { padding-top: 80px !important; padding-bottom: 40px !important; }
+          .contact-hero-para {
+            font-size: clamp(14px, 4.2vw, 16px) !important;
+            text-align: justify !important;
+            max-width: 100% !important;
+            line-height: 1.6 !important;
+            text-justify: inter-word;
+          }
+          .contact-grid-section { padding: 40px 0 80px !important; }
+          .form-card-container { padding: 32px 20px !important; border-radius: 30px !important; }
+          .form-card-container h2 { font-size: 24px !important; margin-bottom: 24px !important; }
+
+          .cta-section { padding: 40px 0 80px !important; }
+          .cta-card { border-radius: 30px !important; padding: 40px 24px !important; }
+          .cta-card h2 { font-size: 1.7rem !important; margin-bottom: 20px !important; }
+          .cta-card p { font-size: 0.9rem !important; margin-bottom: 32px !important; }
+        }
       `}</style>
 
       <Navigation />
 
       {/* Hero Section */}
-      <section style={{ position: 'relative', overflow: 'hidden', paddingTop: '160px', paddingBottom: '80px', display: 'flex', alignItems: 'center' }}>
+      <section className="contact-hero-section" style={{ position: 'relative', overflow: 'hidden', paddingTop: '160px', paddingBottom: '80px', display: 'flex', alignItems: 'center' }}>
         <StarField />
         <ParticleCanvas />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -220,7 +239,7 @@ export default function Contact() {
             <motion.h1 variants={itemVariants} className="premium-gradient-text" style={{ fontSize: 'clamp(28px, 4.2vw, 64px)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-0.02em', margin: '0 auto 24px' }}>
               Get in Touch
             </motion.h1>
-            <motion.p variants={itemVariants} style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', margin: '0 auto' }}>
+            <motion.p className="contact-hero-para" variants={itemVariants} style={{ fontSize: '20px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', margin: '0 auto' }}>
               Have questions about our services? Let's start a conversation about transforming your industry with next-level innovation.
             </motion.p>
           </motion.div>
@@ -228,7 +247,7 @@ export default function Contact() {
       </section>
 
       {/* Contact Section */}
-      <section style={{ padding: '80px 0 140px', position: 'relative', zIndex: 1, overflow: 'hidden' }}>
+      <section className="contact-grid-section" style={{ padding: '80px 0 140px', position: 'relative', zIndex: 1, overflow: 'hidden' }}>
         <BackgroundGlow color="rgba(0, 212, 255, 0.1)" top="10%" left="-5%" size="600px" />
         <BackgroundGlow color="rgba(176, 38, 255, 0.08)" bottom="10%" right="-5%" size="600px" />
 
@@ -303,7 +322,7 @@ export default function Contact() {
             >
               <motion.div
                 variants={itemVariants}
-                className="glass-card"
+                className="glass-card form-card-container"
                 style={{ padding: '60px', borderRadius: '40px', position: 'relative', overflow: 'hidden' }}
               >
                 <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: 'linear-gradient(90deg, transparent, rgba(0,212,255,0.5), transparent)' }} />
@@ -392,21 +411,22 @@ export default function Contact() {
       </section>
 
       {/* Final Section */}
-      <section style={{ padding: '100px 0 160px', position: 'relative', overflow: 'hidden' }}>
+      <section className="cta-section" style={{ padding: '100px 0 160px', position: 'relative', overflow: 'hidden' }}>
         <div className="container mx-auto px-6" style={{ display: 'flex', justifyContent: 'center' }}>
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            style={{ 
-              width: '100%', 
-              maxWidth: '1400px', 
-              borderRadius: '60px', 
-              background: 'linear-gradient(145deg, rgba(99, 103, 255, 0.95) 0%, rgba(132, 148, 255, 0.85) 100%)', 
-              border: '1px solid rgba(255,255,255,0.2)', 
-              backdropFilter: 'blur(12px)', 
-              boxShadow: '0 40px 80px rgba(99, 103, 255, 0.3)', 
-              position: 'relative', 
+            className="cta-card"
+            style={{
+              width: '100%',
+              maxWidth: '1400px',
+              borderRadius: '60px',
+              background: 'linear-gradient(145deg, rgba(99, 103, 255, 0.95) 0%, rgba(132, 148, 255, 0.85) 100%)',
+              border: '1px solid rgba(255,255,255,0.2)',
+              backdropFilter: 'blur(12px)',
+              boxShadow: '0 40px 80px rgba(99, 103, 255, 0.3)',
+              position: 'relative',
               overflow: 'hidden',
               padding: '80px 40px'
             }}

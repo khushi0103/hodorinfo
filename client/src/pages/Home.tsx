@@ -383,7 +383,7 @@ export default function Home() {
             max-width: 100% !important; 
             margin-left: auto; 
             margin-right: auto;
-            font-size: clamp(12px, 3.8vw, 16px) !important;
+            font-size: clamp(14px, 4.2vw, 16px) !important;
             line-height: 1.6 !important;
           }
           .hero-btns { 
@@ -403,7 +403,13 @@ export default function Home() {
           .competencies-section { padding-top: 10px !important; }
           .competencies-header { margin-bottom: 20px !important; }
           .competencies-header h2 { font-size: 1.5rem !important; margin-bottom: 6px !important; }
-          .competencies-header p { font-size: clamp(12px, 3.8vw, 16px) !important; line-height: 1.4 !important; max-width: 280px !important; }
+          .competencies-header p { 
+            font-size: clamp(14px, 4.2vw, 16px) !important; 
+            line-height: 1.6 !important; 
+            text-align: justify !important;
+            text-justify: inter-word;
+            max-width: 100% !important; 
+          }
 
           /* Industries & CTA Mobile */
           .industries-section { padding: 40px 0 !important; }
@@ -592,12 +598,15 @@ export default function Home() {
               <motion.div variants={itemVariants} style={{ display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
                 <Link
                   href="/contact"
-                  className="shine-btn"
-                  style={{ padding: '18px 48px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 700, fontSize: '16px', textDecoration: 'none', transition: 'all 0.3s ease', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: '180px', position: 'relative', overflow: 'hidden' }}
-                  onMouseEnter={(e: any) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)'; }}
-                  onMouseLeave={(e: any) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
                 >
-                  Schedule a Consultation <ArrowRight size={20} style={{ marginLeft: '12px' }} />
+                  <div
+                    className="shine-btn"
+                    style={{ padding: '18px 48px', borderRadius: '99px', background: '#0a0a0a', color: '#ffffff', fontWeight: 700, fontSize: '16px', textDecoration: 'none', transition: 'all 0.3s ease', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: '180px', position: 'relative', overflow: 'hidden', cursor: 'pointer' }}
+                    onMouseEnter={(e: any) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)'; }}
+                    onMouseLeave={(e: any) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
+                  >
+                    Schedule a Consultation <ArrowRight size={20} style={{ marginLeft: '12px' }} />
+                  </div>
                 </Link>
               </motion.div>
             </motion.div>
