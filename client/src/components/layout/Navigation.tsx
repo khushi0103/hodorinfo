@@ -60,7 +60,7 @@ const navLinks = [
 
 const MorphingCTA = () => {
   return (
-    <div style={{ width: '160px', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+    <div className="cta-wrapper" style={{ width: '160px', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
       <Link href="/contact" className="block">
         <motion.div
           animate={{
@@ -215,13 +215,13 @@ export default function Navigation() {
       >
         <div className="container mx-auto px-6">
           <div
-            className="flex items-center justify-between transition-all duration-300"
+            className="navbar-container flex items-center justify-between transition-all duration-300"
             style={{ height: '84px' }}
           >
             {/* ── Logo ─────────────────────────────────────────────────── */}
             <Link href="/" className="flex items-center group" style={{ gap: '10px', textDecoration: 'none', cursor: 'default' }}>
               <div
-                className="flex items-center justify-center rounded-xl transition-all duration-300"
+                className="logo-box flex items-center justify-center rounded-xl transition-all duration-300"
                 style={{
                   width: '44px',
                   height: '44px',
@@ -261,8 +261,8 @@ export default function Navigation() {
               </span>
             </Link>
 
-            {/* ── Desktop Links ────────────────────────────────────────── */}
-            <div className="hidden md:flex items-center" style={{ gap: '32px' }}>
+            {/* ── Desktop Links ────────────────────────────────────────────────── */}
+            <div className="hidden lg:flex items-center space-x-10">
               {navLinks.map((link) => {
                 const active = isActive(link.href);
                 const hovered = hoveredLink === link.label;
@@ -434,14 +434,14 @@ export default function Navigation() {
             </div>
 
             {/* ── CTA Button ───────────────────────────────────────────── */}
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <MorphingCTA />
             </div>
 
             {/* ── Mobile Hamburger ─────────────────────────────────────── */}
             <button
               onClick={() => setIsOpen((p) => !p)}
-              className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-200"
+              className="lg:hidden relative w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-200"
               style={{
                 background: isOpen ? 'rgba(99, 103, 255, 0.1)' : 'transparent',
                 border: '1px solid',
@@ -610,7 +610,7 @@ export default function Navigation() {
 
         {/* ── Mobile Drawer ───────────────────────────────────────────────── */}
         <div
-          className="md:hidden overflow-hidden transition-all duration-300 ease-in-out"
+          className="lg:hidden overflow-hidden transition-all duration-300 ease-in-out"
           style={{
             maxHeight: isOpen ? '520px' : '0px',
             opacity: isOpen ? 1 : 0,
@@ -711,6 +711,18 @@ export default function Navigation() {
         @keyframes shimmer {
           0%   { background-position: 0% 50%; }
           100% { background-position: 200% 50%; }
+        }
+        @media (max-width: 1024px) {
+          .navbar-container { height: 72px !important; }
+          .logo-box { width: 40px !important; height: 40px !important; }
+          .logo-box span { font-size: 18px !important; }
+          .cta-wrapper { width: 140px !important; }
+        }
+        @media (max-width: 768px) {
+          .navbar-container { height: 64px !important; }
+          .logo-box { width: 36px !important; height: 36px !important; }
+          .logo-box span { font-size: 16px !important; }
+          .cta-wrapper { width: 130px !important; }
         }
       `}</style>
     </>

@@ -12,7 +12,16 @@ interface ServiceData {
 }
 
 const StaticFrameContentLoop = ({ data }: { data: ServiceData[] }) => {
+    const [isMobile, setIsMobile] = useState(false);
     const [offset, setOffset] = useState(0);
+
+    // Dynamic Spacing Logic
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     // Content Loop Timer: Har 4 second mein data agle slot mein shift hoga
     useEffect(() => {
@@ -40,14 +49,14 @@ const StaticFrameContentLoop = ({ data }: { data: ServiceData[] }) => {
                     const diff = slotIndex - 2;       // Center index 2 is 0
                     const absDiff = Math.abs(diff);
 
-                    // 1. Spacing: More spread (220px keeps them airy)
-                    const xPos = diff * 220;
+                    // 1. Spacing: Optimized for narrow iPhone SE (320px)
+                    const xPos = diff * (isMobile ? 90 : 220);
 
-                    // 2. Depth: Sides go back, Center is at front (0px)
-                    const zPos = absDiff * -180;
+                    // 2. Depth: Subtle depth for micro-scale
+                    const zPos = absDiff * (isMobile ? -100 : -180);
 
-                    // 3. Scaling: Center is biggest (1.1), Sides smaller
-                    const scale = 1.15 - absDiff * 0.12;
+                    // 3. Scaling: Proportional center focus
+                    const scale = isMobile ? (1.02 - absDiff * 0.15) : (1.15 - absDiff * 0.12);
 
                     // 4. Opacity: Edge cards fade out
                     const opacity = 1 - absDiff * 0.35;
@@ -86,12 +95,12 @@ const StaticFrameContentLoop = ({ data }: { data: ServiceData[] }) => {
                             } as React.CSSProperties}
                         >
                             <div className="content-slide-layer" key={dataIndex}>
-                                <div className="icon-box-glow" style={{ background: `${item.color}15` }}>
-                                    <Icon size={24} color={item.color} />
+                                <div className="icon-box-glow" style={{ background: `${item.color}15`, margin: isMobile ? '0 auto 12px' : '0 0 30px' }}>
+                                    <Icon size={isMobile ? 18 : 24} color={item.color} />
                                 </div>
-                                <h3 style={{ pointerEvents: 'none' }}>{item.title}</h3>
-                                <p style={{ pointerEvents: 'none' }}>{item.desc}</p>
-                                <div style={{ marginTop: 'auto' }}>
+                                <h3 style={{ pointerEvents: 'none', textAlign: isMobile ? 'center' : 'left' }}>{item.title}</h3>
+                                <p style={{ pointerEvents: 'none', textAlign: isMobile ? 'center' : 'left' }}>{item.desc}</p>
+                                <div style={{ marginTop: 'auto', display: 'flex', justifyContent: isMobile ? 'center' : 'flex-start' }}>
                                     <Link href={item.href || "/services"}>
                                         <div className="explore-link" style={{ color: item.color, cursor: 'pointer' }}>
                                             Explore Expertise <ChevronRight size={14} />
@@ -123,6 +132,7 @@ const StaticFrameContentLoop = ({ data }: { data: ServiceData[] }) => {
           justify-content: center;
           align-items: center;
           width: 100%;
+          transform: translateY(-20px);
         }
 
         /* CARD FRAME: Premium Glassmorphism & Precise Gradient Border Aura */
@@ -139,6 +149,36 @@ const StaticFrameContentLoop = ({ data }: { data: ServiceData[] }) => {
           box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
           cursor: pointer;
           transform-style: preserve-3d;
+        }
+
+        @media (max-width: 768px) {
+          .maydiv-perspective-section {
+            height: 300px;
+            perspective: 800px;
+          }
+          .fixed-depth-grid {
+            transform: translateY(0);
+          }
+          .static-slot-frame {
+            width: 150px;
+            height: 220px;
+            border-radius: 14px;
+          }
+          .static-slot-frame::before {
+            border-radius: 14px;
+          }
+          .content-slide-layer {
+            padding: 10px !important;
+          }
+          .icon-box-glow {
+            width: 24px !important;
+            height: 24px !important;
+            margin-bottom: 8px !important;
+            border-radius: 6px !important;
+          }
+          h3 { font-size: 0.7rem !important; margin-bottom: 2px !important; }
+          p { font-size: 0.55rem !important; line-height: 1.25 !important; }
+          .explore-link { font-size: 0.5rem !important; margin-top: 4px !important; }
         }
 
         /* ANIMATED GRADIENT BORDER AURA */

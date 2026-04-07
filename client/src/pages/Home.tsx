@@ -148,11 +148,11 @@ function StarField() {
 
 function PulsingBadge() {
   return (
-    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', padding: '8px 18px', borderRadius: '100px', background: 'rgba(99, 103, 255, 0.08)', border: '1px solid rgba(99, 103, 255, 0.2)', marginBottom: '32px', backdropFilter: 'blur(8px)' }}>
-      <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#6367FF', position: 'relative' }}>
+    <div className="badge-container" style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', padding: '8px 18px', borderRadius: '100px', background: 'rgba(99, 103, 255, 0.08)', border: '1px solid rgba(99, 103, 255, 0.2)', marginBottom: '32px', backdropFilter: 'blur(8px)' }}>
+      <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#6367FF', position: 'relative', flexShrink: 0 }}>
         <div style={{ position: 'absolute', inset: -4, borderRadius: '50%', background: '#6367FF', opacity: 0.4, animation: 'pulse-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite' }} />
       </div>
-      <span style={{ fontSize: '14px', fontWeight: 600, color: '#6367FF', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Next-Level Enterprise Technology</span>
+      <span style={{ fontSize: '14px', fontWeight: 600, color: '#6367FF', letterSpacing: '0.05em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>Next-Level Enterprise Technology</span>
     </div>
   );
 }
@@ -179,7 +179,7 @@ function HeroImage() {
         </div>
 
         {/* Shadow Glow */}
-        <div style={{ position: 'absolute', bottom: '-15%', left: '10%', right: '10%', height: '80%', background: 'radial-gradient(ellipse, rgba(99, 103, 255, 0.2) 0%, transparent 70%)', filter: 'blur(80px)', zIndex: 0, pointerEvents: 'none' }} />
+        <div className="hero-glow" style={{ position: 'absolute', bottom: '-15%', left: '10%', right: '10%', height: '80%', background: 'radial-gradient(ellipse, rgba(99, 103, 255, 0.2) 0%, transparent 70%)', filter: 'blur(80px)', zIndex: 0, pointerEvents: 'none' }} />
 
         <div style={{ position: 'relative', zIndex: 2, WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)', maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)' }}>
           <div style={{ position: 'relative', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)', maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)' }}>
@@ -188,6 +188,7 @@ function HeroImage() {
                 src="https://lottie.host/28c689f9-8afe-4755-a364-887ae7803770/OGuhiwysGC.lottie"
                 loop
                 autoplay
+                className="hero-lottie"
                 style={{ width: '100%', height: 'auto', display: 'block', opacity: 0.95, mixBlendMode: 'lighten', filter: 'blur(0.5px)' }}
               />
               <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 40%, transparent 60%, rgba(255,255,255,0.04) 100%)', zIndex: 3 }} />
@@ -271,6 +272,7 @@ function IndustryCard({ name, icon, index }: { name: string; icon: string; index
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.2 }}
       transition={{ delay: index * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className="industry-card-box"
       style={{
         position: 'relative',
         padding: '36px 32px',
@@ -287,6 +289,7 @@ function IndustryCard({ name, icon, index }: { name: string; icon: string; index
     >
       <div style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', gap: '20px' }}>
         <motion.div
+          className="industry-icon-wrap"
           style={{
             fontSize: '32px',
             background: 'rgba(99, 103, 255, 0.05)',
@@ -303,9 +306,9 @@ function IndustryCard({ name, icon, index }: { name: string; icon: string; index
           {icon}
         </motion.div>
 
-        <div style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+        <div style={{ flexGrow: 1, display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
           <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#ffffff', margin: 0 }}>{name}</h3>
-          <ChevronRight size={14} style={{ marginLeft: 'auto', color: 'rgba(99, 103, 255, 0.5)', transition: 'transform 0.3s ease', transform: isHovered ? 'translateX(5px)' : 'none' }} />
+          <ChevronRight className="industry-card-arrow" size={14} style={{ marginLeft: 'auto', color: 'rgba(99, 103, 255, 0.5)', transition: 'transform 0.3s ease', transform: isHovered ? 'translateX(5px)' : 'none' }} />
         </div>
       </div>
     </motion.div>
@@ -341,6 +344,84 @@ export default function Home() {
         @keyframes animatedTextGradient { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
         @keyframes fadeUpReveal { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .premium-gradient-text { background: linear-gradient(90deg, #ffffff, #6367FF, #8494FF, #6367FF, #ffffff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; animation: animatedTextGradient 8s linear infinite; display: block; width: fit-content; }
+        
+        /* Mobile-Only Pyramid & Responsive Layout */
+        @media (max-width: 1024px) {
+          .hero-wrapper { flex-direction: column !important; align-items: center !important; text-align: center !important; gap: 40px !important; }
+          .hero-text-cont { flex: 1 1 100% !important; max-width: 100% !important; display: flex; flex-direction: column; align-items: center; }
+          .hero-image-cont { 
+            flex: 1 1 100% !important; 
+            max-width: 100% !important; 
+            justify-content: center !important; 
+            transform: scale(1.4) !important; 
+            margin-top: 40px !important;
+            margin-bottom: 40px !important;
+          }
+          .hero-glow { display: none !important; }
+          .hero-lottie { filter: none !important; }
+          
+          .pyramid-h1 { 
+            text-align: center !important; 
+            width: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            gap: 12px !important;
+            margin-bottom: 48px !important;
+          }
+          .pyramid-line-1 { font-size: clamp(22px, 6.8vw, 34px) !important; margin: 0 auto !important; white-space: nowrap !important; display: block !important; padding: 0 !important; font-weight: 700 !important; letter-spacing: -0.02em !important; }
+          .pyramid-line-2 { font-size: clamp(18px, 5.8vw, 28px) !important; margin: 0 auto !important; white-space: nowrap !important; display: block !important; padding: 0 !important; font-weight: 600 !important; }
+          .pyramid-line-3 { font-size: clamp(14px, 4.8vw, 22px) !important; margin: 0 auto !important; white-space: nowrap !important; display: block !important; padding: 0 !important; font-weight: 500 !important; }
+          
+          .badge-container { padding: 6px 14px !important; margin-bottom: 24px !important; }
+          .badge-container span { font-size: 11px !important; }
+          .badge-container div:first-child { width: 6px !important; height: 6px !important; }
+          
+          .hero-para { 
+            text-align: justify !important; 
+            text-justify: inter-word; 
+            max-width: 100% !important; 
+            margin-left: auto; 
+            margin-right: auto;
+            font-size: clamp(12px, 3.8vw, 16px) !important;
+            line-height: 1.6 !important;
+          }
+          .hero-btns { 
+            display: flex !important; 
+            flex-direction: row !important; 
+            flex-wrap: nowrap !important; 
+            justify-content: center !important; 
+            gap: 12px !important; 
+            width: 100%; 
+          }
+          .hero-btns > * { flex: 0 1 auto !important; }
+          .hero-btns div { padding: 12px 20px !important; }
+          .hero-btns span { font-size: 14px !important; }
+
+          .hero-section { padding-top: 60px !important; padding-bottom: 20px !important; }
+          .hero-content-wrapper { padding: 20px 0 !important; gap: 32px !important; }
+          .competencies-section { padding-top: 10px !important; }
+          .competencies-header { margin-bottom: 20px !important; }
+          .competencies-header h2 { font-size: 1.5rem !important; margin-bottom: 6px !important; }
+          .competencies-header p { font-size: clamp(12px, 3.8vw, 16px) !important; line-height: 1.4 !important; max-width: 280px !important; }
+
+          /* Industries & CTA Mobile */
+          .industries-section { padding: 40px 0 !important; }
+          .industries-header { margin-bottom: 32px !important; }
+          .industries-header div { font-size: clamp(11px, 3.5vw, 13px) !important; margin-bottom: 8px !important; }
+          .industries-header h2 { font-size: 1.5rem !important; margin-bottom: 12px !important; }
+          .industries-header p { font-size: clamp(14px, 4.2vw, 16px) !important; line-height: 1.5 !important; max-width: 100% !important; color: rgba(224,224,224,0.7) !important; }
+          .industries-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+          .industry-card-box { padding: 12px 10px !important; border-radius: 14px !important; }
+          .industry-icon-wrap { width: 32px !important; height: 32px !important; font-size: 16px !important; border-radius: 8px !important; gap: 8px !important; }
+          .industry-card-box h3 { font-size: 11px !important; line-height: 1.2 !important; }
+          .industry-card-arrow { display: none !important; }
+          
+          .cta-section { padding: 40px 0 80px !important; }
+          .cta-card { border-radius: 30px !important; padding: 40px 24px !important; }
+          .cta-card h2 { font-size: 1.7rem !important; margin-bottom: 20px !important; }
+          .cta-card p { font-size: 0.9rem !important; margin-bottom: 32px !important; }
+        }
       `}</style>
 
       {/* GLOBAL BACKGROUND EFFECTS */}
@@ -354,29 +435,31 @@ export default function Home() {
         <Navigation />
 
         {/* HERO SECTION - Now Transparent with local effects */}
-        <section style={{ position: 'relative', overflow: 'hidden', paddingTop: '80px', paddingBottom: '80px', minHeight: '90vh', display: 'flex', alignItems: 'center' }}>
+        <section className="hero-section" style={{ position: 'relative', overflow: 'hidden', paddingTop: '80px', paddingBottom: '80px', minHeight: '90vh', display: 'flex', alignItems: 'center' }}>
           <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
             <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663026809090/hnrrSqkFZFAiwHyMRLF6Qv/hodor-hero-tech-background-LdQqcCh7PBcqhdmaDGgBHk.webp" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.04 }} />
           </div>
           <ParticleCanvas />
           <div className="container mx-auto px-6 relative z-10">
-            <div style={{ padding: '40px 0', position: 'relative', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div className="hero-content-wrapper" style={{ padding: '60px 0', position: 'relative', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'center', justifyContent: 'space-between' }}>
               <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.1 }}
                 variants={containerVariants}
+                className="hero-text-cont"
                 style={{ flex: '1 1 600px', maxWidth: '1050px' }}
               >
                 <motion.div variants={itemVariants}><PulsingBadge /></motion.div>
                 <motion.h1
+                  className="pyramid-h1"
                   style={{ fontSize: 'clamp(28px, 4.2vw, 64px)', fontWeight: 500, lineHeight: 1.1, marginBottom: '28px', fontFamily: "'Poppins', sans-serif", letterSpacing: '-0.02em', overflow: 'hidden' }}
                 >
                   <motion.span
-                    initial={{ opacity: 0, y: -40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: 50, y: 0 }}
+                    whileInView={{ opacity: 1, x: 0, y: 0 }}
                     transition={{ duration: 1.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="premium-gradient-text"
+                    className="premium-gradient-text pyramid-line-1"
                     style={{ paddingRight: '20px' }}
                   >
                     Transform Any Industry
@@ -385,7 +468,7 @@ export default function Home() {
                     initial={{ opacity: 0, x: -60 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1.4, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="premium-gradient-text"
+                    className="premium-gradient-text pyramid-line-2"
                     style={{ paddingRight: '20px' }}
                   >
                     with Next-Level
@@ -394,7 +477,7 @@ export default function Home() {
                     initial={{ opacity: 0, x: 60 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1.4, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
-                    className="premium-gradient-text"
+                    className="premium-gradient-text pyramid-line-3"
                     style={{ paddingRight: '20px', paddingBottom: '12px' }}
                   >
                     Technology
@@ -402,12 +485,14 @@ export default function Home() {
                 </motion.h1>
                 <motion.p
                   variants={itemVariants}
+                  className="hero-para"
                   style={{ fontSize: 'clamp(16px, 1.1vw, 18px)', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: '640px', marginBottom: '48px', fontWeight: 400 }}
                 >
                   HodorInfo specializes in digital transformation across all industries. We combine enterprise software, AI, drones, cybersecurity, and data science to revolutionize how businesses operate.
                 </motion.p>
                 <motion.div
                   variants={itemVariants}
+                  className="hero-btns"
                   style={{ display: 'flex', gap: '32px', justifyContent: 'flex-start', flexWrap: 'wrap' }}
                 >
                   <MagneticButton label="Get started" href="/contact" primary={true} />
@@ -419,6 +504,7 @@ export default function Home() {
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.1 }}
                 variants={imageVariants}
+                className="hero-image-cont"
                 style={{ flex: '1 1 500px', maxWidth: '1200px', position: 'relative', width: '100%', display: 'flex', justifyContent: 'flex-end', margin: '0 auto', transform: 'translate(-40px, 40px)' }}
               >
                 <HeroImage />
@@ -428,9 +514,9 @@ export default function Home() {
         </section>
 
         {/* CORE COMPETENCIES SECTION - MAYDIV STYLE (Static Frames + Moving Content) */}
-        <section style={{ padding: '100px 0 0', background: 'transparent', position: 'relative', zIndex: 1 }}>
+        <section className="competencies-section" style={{ padding: '100px 0 0', background: 'transparent', position: 'relative', zIndex: 1 }}>
           <div className="container mx-auto px-6">
-            <div style={{ textAlign: 'center', marginBottom: '48px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div className="competencies-header" style={{ textAlign: 'center', marginBottom: '48px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <h2 className="premium-gradient-text" style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 700, fontFamily: "'Poppins', sans-serif", marginBottom: '16px', letterSpacing: '-0.02em' }}>Our Core Competencies</h2>
               <p style={{ fontSize: '18px', color: 'rgba(224,224,224,0.7)', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>Six interconnected technology pillars enabling industry transformation</p>
             </div>
@@ -442,14 +528,14 @@ export default function Home() {
         </section>
 
         {/* INDUSTRIES SECTION */}
-        <section style={{ padding: '100px 0' }}>
+        <section className="industries-section" style={{ padding: '100px 0' }}>
           <div className="container mx-auto px-6">
-            <div style={{ textAlign: 'center', marginBottom: '64px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div className="industries-header" style={{ textAlign: 'center', marginBottom: '64px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#00d4ff', marginBottom: '16px' }}>Industries</div>
               <h2 className="premium-gradient-text" style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, fontFamily: "'Poppins', sans-serif", marginBottom: '14px' }}>Industries We Transform</h2>
               <p style={{ fontSize: '16px', color: 'rgba(224,224,224,0.6)', maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>From logistics to healthcare, we bring digital innovation to every sector</p>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '24px', perspective: '1500px' }}>
+            <div className="industries-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '24px', perspective: '1500px' }}>
               {industries.map((ind, i) => (
                 <IndustryCard key={i} name={ind.name} icon={ind.icon} index={i} />
               ))}
@@ -468,25 +554,26 @@ export default function Home() {
         </section>
 
         {/* CTA SECTION */}
-        <section style={{ padding: '80px 0 140px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+        <section className="cta-section" style={{ padding: '80px 0 140px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
           <div className="container mx-auto px-6" style={{ display: 'flex', justifyContent: 'center' }}>
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={containerVariants}
-              style={{ 
-                width: '100%', 
-                maxWidth: '1400px', 
-                borderRadius: '60px', 
-                background: 'linear-gradient(145deg, rgba(99, 103, 255, 0.95) 0%, rgba(132, 148, 255, 0.85) 100%)', 
-                padding: '64px 40px', 
-                textAlign: 'center', 
-                position: 'relative', 
-                overflow: 'hidden', 
-                border: '1px solid rgba(255, 255, 255, 0.2)', 
-                backdropFilter: 'blur(12px)', 
-                boxShadow: '0 40px 80px rgba(99, 103, 255, 0.3)' 
+              className="cta-card"
+              style={{
+                width: '100%',
+                maxWidth: '1400px',
+                borderRadius: '60px',
+                background: 'linear-gradient(145deg, rgba(99, 103, 255, 0.95) 0%, rgba(132, 148, 255, 0.85) 100%)',
+                padding: '64px 40px',
+                textAlign: 'center',
+                position: 'relative',
+                overflow: 'hidden',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                backdropFilter: 'blur(12px)',
+                boxShadow: '0 40px 80px rgba(99, 103, 255, 0.3)'
               }}
             >
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.3) 0%, transparent 60%)', pointerEvents: 'none' }} />
