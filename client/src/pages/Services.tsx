@@ -401,12 +401,12 @@ export default function Services() {
             margin-bottom: 12px !important;
           }
           h2 {
-            font-size: 28px !important;
+            font-size: 26px !important;
           }
           
           .cta-section { padding: 40px 0 80px !important; }
           .cta-card { border-radius: 30px !important; padding: 20px 24px !important; }
-          .cta-card h2 { font-size: 28px !important; margin-bottom: 20px !important; }
+          .cta-card h2 { font-size: 26px !important; margin-bottom: 20px !important; }
           .cta-card p { font-size: 0.9rem !important; margin-bottom: 32px !important; }
         }
       `}</style>

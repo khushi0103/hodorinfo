@@ -325,7 +325,7 @@ export default function Industries() {
             margin-bottom: 12px !important; 
           }
           h2 {
-            font-size: 28px !important;
+            font-size: 26px !important;
           }
           .industries-hero-para {
             font-size: clamp(14px, 4.2vw, 16px) !important;
@@ -370,7 +370,7 @@ export default function Industries() {
             text-justify: inter-word;
           }
 
-          .cta-card h2 { font-size: 28px !important; margin-bottom: 20px !important; }
+          .cta-card h2 { font-size: 26px !important; margin-bottom: 20px !important; }
           .cta-card p { font-size: 0.9rem !important; margin-bottom: 32px !important; }
 
           .choose-hero-para {

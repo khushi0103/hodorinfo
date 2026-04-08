@@ -204,7 +204,7 @@ export default function Contact() {
         @media (max-width: 1024px) {
           .contact-hero-section { padding-top: 80px !important; padding-bottom: 40px !important; }
           .contact-hero-h1 { font-size: 30px !important; }
-          h2 { font-size: 28px !important; }
+          h2 { font-size: 26px !important; }
           .contact-hero-para {
             font-size: clamp(14px, 4.2vw, 16px) !important;
             text-align: justify !important;
@@ -218,7 +218,7 @@ export default function Contact() {
 
           .cta-section { padding: 40px 0 80px !important; }
           .cta-card { border-radius: 30px !important; padding: 40px 24px !important; }
-          .cta-card h2 { font-size: 28px !important; margin-bottom: 20px !important; }
+          .cta-card h2 { font-size: 26px !important; margin-bottom: 20px !important; }
           .cta-card p { font-size: 0.9rem !important; margin-bottom: 32px !important; }
         }
       `}</style>
