@@ -203,23 +203,31 @@ export default function Contact() {
 
         @media (max-width: 1024px) {
           .contact-hero-section { padding-top: 80px !important; padding-bottom: 40px !important; }
-          .contact-hero-h1 { font-size: 30px !important; }
-          h2 { font-size: 26px !important; }
+          .contact-hero-h1 { font-size: 30px !important; text-align: center !important; }
+          h2 { font-size: 26px !important; text-align: center !important; }
           .contact-hero-para {
             font-size: clamp(14px, 4.2vw, 16px) !important;
-            text-align: justify !important;
+            text-align: center !important;
             max-width: 100% !important;
             line-height: 1.6 !important;
-            text-justify: inter-word;
           }
           .contact-grid-section { padding: 40px 0 80px !important; }
           .form-card-container { padding: 32px 20px !important; border-radius: 30px !important; }
           .form-card-container h2 { font-size: 24px !important; margin-bottom: 24px !important; }
 
-          .cta-section { padding: 40px 0 80px !important; }
-          .cta-card { border-radius: 30px !important; padding: 40px 24px !important; }
-          .cta-card h2 { font-size: 26px !important; margin-bottom: 20px !important; }
           .cta-card p { font-size: 0.9rem !important; margin-bottom: 32px !important; }
+
+          .contact-info-col {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+          }
+          .contact-card {
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+          }
         }
       `}</style>
 
@@ -261,7 +269,7 @@ export default function Contact() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={containerVariants}
-              className="lg:col-span-4 space-y-8"
+              className="contact-info-col lg:col-span-4 space-y-8"
             >
               <motion.h2 variants={itemVariants} style={{ fontSize: '28px', fontWeight: 700, color: '#ffffff', marginBottom: '40px' }}>Contact Information</motion.h2>
 
@@ -277,7 +285,7 @@ export default function Contact() {
                       key={idx}
                       variants={itemVariants}
                       whileHover={{ scale: 1.02, x: 10 }}
-                      className="glass-card"
+                      className="glass-card contact-card"
                       style={{ padding: '24px', borderRadius: '24px', display: 'flex', gap: '20px', border: '1px solid rgba(255,255,255,0.05)' }}
                     >
                       <div style={{ flexShrink: 0 }}>
@@ -299,12 +307,12 @@ export default function Contact() {
               </div>
 
               {/* Quick Links */}
-              <motion.div variants={itemVariants} style={{ marginTop: '60px', padding: '40px', borderRadius: '32px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+              <motion.div variants={itemVariants} style={{ marginTop: '60px', padding: '40px', borderRadius: '32px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', width: '100%' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#ffffff', marginBottom: '24px' }}>Quick Links</h3>
                 <ul className="space-y-4">
                   {['Services', 'Industries', 'About', 'Blog'].map((link) => (
                     <li key={link}>
-                      <a href={`/${link.toLowerCase()}`} style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'flex', alignItems: 'center', gap: '10px' }} className="hover:text-cyan-accent group">
+                      <a href={`/${link.toLowerCase()}`} style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'inherit' }} className="hover:text-cyan-accent group">
                         <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#00d4ff', opacity: 0.5 }} />
                         {link}
                       </a>
